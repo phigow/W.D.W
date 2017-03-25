@@ -251,333 +251,7 @@
                             </div>
                         </li>
                         <!--正文-->
-                        <li class="page content row" book="vm.book" page-data="page" parse-emoji=".book-title" ng-repeat="page in vm.book.pages | limitTo: vm.limit track by $index">
-                            <div class="col-lg-3">
-                                <text class="date" id="para_date">{date}</text><!--Parameter_Date-->
-                                <text class="time" id="para_time" fill="#fff">{time}</text><!--Parameter_Time-->
-                            </div>
-                            <div class="col-lg-9">
-                                <div id="para_img"></div><!--Parameter_Images-->
-                                <div id="para_content"></div><!--Parameter_Content-->
-                            </div>
-
-<!--
-
-  <div class="images">
-      
-<div style="left: 98px; top: 42px; width: 258px; height: 79.01px; background-image: url(&quot;https://weixinshu.com/images/fetch?url=http://mmsns.qpic.cn/mmsns/kBCyznggU08y356eVZia26qDfZsSywtibXy4WOSficsBMrI79HVLZSbCuIzpfmpS563m8dycbYth4g/0&quot;);" class="image loaded" data-msg-id="6445404" id="6445405" data-source-id="qy20060608@23"></div>
-
-
-
-
-<div style="left: 98px; top: 162px; width: 226.84px; height: 271.86px; background-image: url(&quot;https://weixinshu.com/images/fetch?url=http://mmsns.qpic.cn/mmsns/kBCyznggU08y356eVZia26vRW5tDE0Y7ibPwDcuzO9LMehKFFW7L2FMB1GH7QDx3NPcd3u5XLHCao/0&quot;);" class="image loaded" data-msg-id="6445404" id="6445406" data-source-id="qy20060608@23"></div>
-<div style="left: 334.84px; top: 162px; width: 153.16px; height: 271.86px; background-image: url(&quot;https://weixinshu.com/images/fetch?url=http://mmsns.qpic.cn/mmsns/kBCyznggU08y356eVZia26kEWunIZYSZLbBMxpDBCZco8wLK4I1ibgU3uibx6NQiaNXxhfqT42FvV1E/0&quot;);" class="image loaded" data-msg-id="6445404" id="6445407" data-source-id="qy20060608@23"></div>
-
-
-<div style="left: 98px; top: 452.86px; width: 190px; height: 253.33px; background-image: url(&quot;https://weixinshu.com/images/fetch?url=http://mmsns.qpic.cn/mmsns/kBCyznggU08y356eVZia26hZRaeplXKpqNicxk47d0v0jZ6VufaibhqKz0uwKfJD8soQia0CmQDUiaIQ/0&quot;);" class="image loaded" data-msg-id="6445371" id="6445372" data-source-id="qy20060608@23"></div>  </div>
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-      
-      
-      
-
-    <g class="label">
-        
-
-<g class="label" data-msg-id="6445404">
-    
-  <rect x="0" y="21" width="40" height="20" rx="2" ry="2"></rect>
-  <text class="date" y="16" x="20" text-anchor="middle">
-      15
-  </text>
-  <text class="time" x="20" y="35" text-anchor="middle" fill="#fff">
-      01:30
-  </text>
-    
-</g>
-
-    </g>
-  
-<g class="text">
-    
-    
-    
-  <text x="318" y="14" class="text" font-size="14" data-msg-id="6445404" fill="#000">懂得感恩，懂得分享，</text>    
-    
-    
-</g>
-
-<g class="text">
-    
-    
-    
-  <text x="318" y="38" class="text" font-size="14" data-msg-id="6445404" fill="#000">懂得规矩。 问题一定有</text>    
-    
-    
-</g>
-
-<g class="text">
-    
-    
-    
-  <text x="318" y="62" class="text" font-size="14" data-msg-id="6445404" fill="#000">解决的方法，无所谓多</text>    
-    
-    
-</g>
-
-<g class="text">
-    
-    
-    
-  <text x="318" y="86" class="text" font-size="14" data-msg-id="6445404" fill="#000">走几步。</text>
-    
-    
-</g>
-
-
-      
-
-      
-
-      
-      
-
-      
-      
-   
-
-      
-      
-      
-
-    <g class="label">
-        
-
-<g class="label" data-msg-id="6445371">
-    
-  <rect x="0" y="431.86" width="40" height="20" rx="2" ry="2"></rect>
-  <text class="date" y="426.86" x="20" text-anchor="middle">
-      15
-  </text>
-  <text class="time" x="20" y="445.86" text-anchor="middle" fill="#fff">
-      12:43
-  </text>
-    
-</g>
-
-    </g>
-      
-
-      
-
-      
-
-      
-      
-
-      
-
-      
-
-      
-      
-
-      
-
-      
-    <rect data-msg-id="6445371" class="block" x="250" y="410.86" width="190" height="253.33" fill="transparent"></rect>
-    <path d="M 430 411.86
-               L 440 411.86
-               L 440 421.86" stroke="#aaa" stroke-width="2" fill="transparent"></path>
-    <path d="M 430 664.19
-              L 440 664.19
-              L 440 654.19" stroke="#aaa" stroke-width="2" fill="transparent"></path>
-      
-
-      
-      
-
-      
-      
-      
-<g class="text">
-    
-    
-    
-  <text x="264" y="491.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">“</text>
-
-  <text x="272" y="491.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">要</text>
-
-  <text x="286" y="491.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">常</text>
-
-  <text x="301" y="491.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">常</text>
-
-  <text x="315" y="491.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">喜</text>
-
-  <text x="330" y="491.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">乐</text>
-
-  <text x="344" y="491.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">,</text>
-
-  <text x="352" y="491.53" class="text" font-size="14" data-msg-id="6445371" fill="#000"> </text>
-
-  <text x="359" y="491.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">不</text>
-
-  <text x="374" y="491.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">住</text>
-
-  <text x="388" y="491.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">地</text>
-
-  <text x="403" y="491.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">祷</text>
-    
-    
-    
-</g>
-
-<g class="text">
-    
-    
-    
-  <text x="264" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">告</text>
-
-  <text x="279" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">,</text>
-
-  <text x="286" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000"> </text>
-
-  <text x="294" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">凡</text>
-
-  <text x="308" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">事</text>
-
-  <text x="323" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">谢</text>
-
-  <text x="337" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">恩</text>
-
-  <text x="352" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">;</text>
-
-  <text x="359" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">因</text>
-
-  <text x="374" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">为</text>
-
-  <text x="388" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">这</text>
-
-  <text x="403" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">是</text>
-
-  <text x="417" y="515.53" class="text" font-size="14" data-msg-id="6445371" fill="#000"> </text>
-    
-    
-    
-</g>
-
-<g class="text">
-    
-    
-    
-  <text x="264" y="539.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">神</text>
-
-  <text x="279" y="539.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">在</text>
-
-  <text x="293" y="539.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">基</text>
-
-  <text x="308" y="539.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">督</text>
-
-  <text x="322" y="539.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">耶</text>
-
-  <text x="337" y="539.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">稣</text>
-
-  <text x="351" y="539.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">里</text>
-
-  <text x="366" y="539.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">向</text>
-
-  <text x="380" y="539.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">你</text>
-
-  <text x="395" y="539.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">们</text>
-
-  <text x="409" y="539.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">所</text>
-    
-    
-    
-</g>
-
-<g class="text">
-    
-    
-    
-  <text x="264" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">定</text>
-
-  <text x="279" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">的</text>
-
-  <text x="293" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">旨</text>
-
-  <text x="308" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">意</text>
-
-  <text x="322" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">”</text>
-
-  <text x="330" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">。</text>
-
-  <text x="344" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000"> </text>
-
-  <text x="352" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">(</text>
-
-  <text x="359" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">‭</text>
-
-  <text x="367" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">帖</text>
-
-  <text x="381" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">撒</text>
-
-  <text x="396" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">罗</text>
-
-  <text x="410" y="563.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">尼</text>
-    
-    
-    
-</g>
-
-<g class="text">
-    
-    
-    
-  <text x="264" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">迦</text>
-
-  <text x="278" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">前</text>
-
-  <text x="292" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">书</text>
-
-  <text x="306" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">‬</text>
-
-  <text x="313" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000"> </text>
-
-  <text x="320" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">‭</text>
-
-  <text x="327" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">5</text>
-
-  <text x="334" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">‬</text>
-
-  <text x="341" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">:</text>
-
-  <text x="348" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">‭</text>
-
-  <text x="355" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">1</text>
-
-  <text x="362" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">6</text>
-
-  <text x="369" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">-</text>
-
-  <text x="376" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">1</text>
-
-  <text x="383" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">8</text>
-
-  <text x="390" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">‬</text>
-
-  <text x="397" y="587.53" class="text" font-size="14" data-msg-id="6445371" fill="#000">)</text>
-    
-    
-    
-</g>
-
-
-      
-
-      
-<button onclick="topdf()">提交</button>
-      
-  </svg>-->
+                        
                     </ul>
 
     <a href="pay.html" target="new" class="swipe-out">提交</a>
@@ -588,9 +262,7 @@
 </body>
 
 <script type="text/javascript" src="/assets/js/jquery.min.js"></script>
-<!--
 <script type="text/javascript" src="/assets/js/framework7.min.js"></script>
--->
 <script src="/assets/js/jquery-1.10.1.min.js" type="text/javascript" ></script>
 <script src="/assets/js/underscore.js" type="text/javascript" ></script>
 <script type="text/template" id="comment">
@@ -600,11 +272,11 @@
 </script>
 <script type="text/template" id="page_template">
     <li class="page content row" book="vm.book" page-data="page" parse-emoji=".book-title" ng-repeat="page in vm.book.pages | limitTo: vm.limit track by $index">
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <text class="date" id="para_date"><%=date%></text><!--Parameter_Date-->
             <text class="time" id="para_time" fill="#fff"><%=time%></text><!--Parameter_Time-->
         </div>
-        <div class="col-lg-9">
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
             <div id="para_img"><%=img%></div><!--Parameter_Images-->
             <div id="para_content"><%=content%></div><!--Parameter_Content-->
         </div>
@@ -624,11 +296,11 @@
 </script>
 <script type="text/template" id="double_images">
     <p class="row">
-        <span class="col-lg-6">
+        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
             <img class="list-img" src=<%=imgA%> style="width:100%">
         </span>
-        <span class="col-lg-6">
-            <img class="list-img col-lg-6" src=<%=imgB%> style="width:100%">
+        <span class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <img class="list-img" src=<%=imgB%> style="width:100%">
         </span>
     </p>
 </script>
@@ -716,16 +388,33 @@ jQuery(document).ready(function() {
                         $('#para_author*').html(data[i].authorName);  
                         $('#para_from').html(timeStamp2String(data[i].timestamp*1000));  
                         $('#para_to').html(timeStamp2String(data[0].timestamp*1000)); 
-                        var image=_.template($('#images').html());
+                        var Simage=_.template($('#images').html());
+                        var Dimage=_.template($('#double_images').html());
                         var images="";
-                        for(var img=0;img < data[i].mediaList.length; img++){
-                            imgsrc = (data[i].mediaList[img].indexOf("qpic.cn/mm")>0?"https://weixinshu.com/images/fetch?url=":"")+data[i].mediaList[img];
-                            console.log(imgsrc);
-                            images += image(
-                                {
-                                    img:    imgsrc
-                                });
+                        if(data[i].mediaList.length == 1) {
+                            imgsrc = (data[i].mediaList[0].indexOf("qpic.cn/mm")>0?"https://weixinshu.com/images/fetch?url=":"")+data[i].mediaList[0];
+                            images = Simage(
+                            {
+                                img:        imgsrc
+                            });
                         }
+                        else{
+                            for(var img=0;img < data[i].mediaList.length; img+=2){
+                                imgsrcA = (data[i].mediaList[img].indexOf("qpic.cn/mm")>0?"https://weixinshu.com/images/fetch?url=":"")+data[i].mediaList[img];
+                                if(img + 2 > data[i].mediaList.length){
+                                    imgsrcB="";
+                                }
+                                else{
+                                    imgsrcB =  (data[i].mediaList[img+1].indexOf("qpic.cn/mm")>0?"https://weixinshu.com/images/fetch?url=":"")+data[i].mediaList[img+1]
+                                };
+                                //console.log(images);
+                                images += Dimage(
+                                    {
+                                        imgA:       imgsrcA,
+                                        imgB:       imgsrcB
+                                    });
+                            }
+                        };
                         $('#para_date').html(timeStamp2String(data[i].timestamp*1000).split(" ")[0]);
                         $('#para_time').html(timeStamp2String(data[i].timestamp*1000).split(" ")[1]);
                         $('#para_img').html(images);                        
