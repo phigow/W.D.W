@@ -60,7 +60,7 @@
                         <!-- START LOGO DESIGN AREA -->
                         <div class="logo">
                             <span>
-                                <img src="assets/images/logo.jpg"/>
+                                <img src="assets/images/logo.png"/>
                             </span>
                             <span>
                                 <a href="index.html">我的我</a>
@@ -74,9 +74,9 @@
                             <div class="navbar navbar-nobg">
                                 <div class="navbar-collapse collapse">
                                     <ul class="nav navbar-nav navbar-right">
-                                        <li class="active"><a href="assets/images/QRCode.png" class="work-popup">注册 <div class="ripple-wrapper"></div></a>
+                                        <li class="active"><a href="#" id="parameter_agent">注册 <div class="ripple-wrapper"></div></a>
                                         </li>                                        
-                                        <li><a href="assets/images/QRCode.png" class="work-popup">登录</a>
+                                        <li><a href="/login" class="smoth-scroll">登录</a>
                                         </li>
                                         <li><a class="smoth-scroll" href="/bookstore">我的书架</a>
                                         </li>
@@ -131,7 +131,7 @@
                     <!-- START SINGLE WORK DESIGN AREA -->
                     <div class="col-md-3 col-sm-3 mix development">
                         <div class="item wow fadeInUp" data-wow-delay="0.4s">
-                            <a href="compose.html">
+                            <a href="#">
                                 <img src="assets/images/portfolio/2.jpg" alt="">
                                 <div class="portfolio-caption">
                                     <h4>敬请期待</h4>
@@ -143,7 +143,7 @@
                     <!-- START SINGLE WORK DESIGN AREA -->
                     <div class="col-md-3 col-sm-3 mix web">
                         <div class="item wow fadeInUp" data-wow-delay="0.6s">
-                            <a href="compose.html">
+                            <a href="#">
                                 <img src="assets/images/portfolio/3.jpg" alt="">
                                 <div class="portfolio-caption">
                                     <h4>敬请期待</h4>
@@ -155,7 +155,7 @@
                     <!-- START SINGLE WORK DESIGN AREA -->
                     <div class="col-md-3 col-sm-3 mix webdesign">
                         <div class="item wow fadeInUp" data-wow-delay="0.2s">
-                            <a href="compose.html">
+                            <a href="#">
                                 <img src="assets/images/portfolio/4.jpg" alt="">
                                 <div class="portfolio-caption">
                                     <h4>敬请期待</h4>
@@ -167,7 +167,7 @@
                     <!-- START SINGLE WORK DESIGN AREA -->
                     <div class="col-md-3 col-sm-3 mix development">
                         <div class="item wow fadeInUp" data-wow-delay="0.4s">
-                            <a href="compose.html">
+                            <a href="#">
                                 <img src="assets/images/portfolio/5.jpg" alt="">
                                 <div class="portfolio-caption">
                                     <h4>敬请期待</h4>
@@ -179,7 +179,7 @@
                     <!-- START SINGLE WORK DESIGN AREA -->
                     <div class="col-md-3 col-sm-3 mix web">
                         <div class="item wow fadeInUp" data-wow-delay="0.6s">
-                            <a href="compose.html">
+                            <a href="#">
                                 <img src="assets/images/portfolio/6.jpg" alt="">
                                 <div class="portfolio-caption">
                                     <h4>敬请期待</h4>
@@ -191,7 +191,7 @@
                     <!-- START SINGLE WORK DESIGN AREA -->
                     <div class="col-md-3 col-sm-3 mix development">
                         <div class="item wow fadeInUp" data-wow-delay="0.4s">
-                            <a href="compose.html">
+                            <a href="#">
                                 <img src="assets/images/portfolio/7.jpg" alt="">
                                 <div class="portfolio-caption">
                                     <h4>敬请期待</h4>
@@ -203,7 +203,7 @@
                     <!-- START SINGLE WORK DESIGN AREA -->
                     <div class="col-md-3 col-sm-3 mix web">
                         <div class="item wow fadeInUp" data-wow-delay="0.6s">
-                            <a href="compose.html">
+                            <a href="#">
                                 <img src="assets/images/portfolio/8.jpg" alt="">
                                 <div class="portfolio-caption">
                                     <h4>敬请期待</h4>
@@ -262,6 +262,41 @@
     <script src="assets/js/form-contact.js"></script>
     <!-- SCRIPT JS -->
     <script src="assets/js/scripts.js"></script>
+    <!-- PAGE JS -->
+    <script type="text/javascript">
+
+    function GetQueryString(name)
+    {
+         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+         var r = window.location.search.substr(1).match(reg);
+         if(r!=null)return  unescape(r[2]); return null;
+    };
+    /*
+    jQuery(document).ready(function() {
+         $.ajax({
+                type:       "POST",
+                url:        'http://120.77.245.158:8088/api/User/AddUserFromPhone',
+                contentType:   "application/json",
+
+                data:       JSON.stringify({Name:"peace of mind",WeCharID:"wxid_2def89fefad7",Level:"0"}),//'{"Name":"peace of mind","WeCharID":"wxid_2def89fefad7","Level":"0"}',
+                success:    function(result) {
+                    alert(result);
+                },
+                error:      function(status,result) {
+                    alert(status.statusText);
+                }
+            });
+*/
+        var name = "";
+        if(GetQueryString("agent")=="wxid_7q4hqczeidpj21")
+            name = "程睦清"
+        if(GetQueryString("agent")=="wxid_3456344564412")
+            name = "宦正华"
+        if(GetQueryString("agent")=="wxid_a8lcs1ofudu912")
+            name = "黎黎张"
+       // alert("你是"+name+"推荐的客户");
+    });
+    </script>
 </body>
 
 </html>

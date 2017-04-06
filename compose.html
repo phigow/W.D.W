@@ -29,6 +29,31 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+    
+    <style type="text/css">
+        body {
+            text-align: center;
+        }
+
+        .photo {
+            position: relative;
+        }
+        .title{
+            position: absolute;
+            bottom:20px;
+            left:0px;
+            text-align: center;
+            right:0px;
+            font-size:24px;
+            font-weight: bold;
+            color:#979797;
+        }
+        .photos {
+            margin:auto;
+            font-size:0px;
+        }
+    </style>
+    <!--[if IE]>
 </head>
 <body ng-app="wxbook">
     <ui-view name="main">
@@ -40,11 +65,12 @@
                         <!--封面页-->
                         <li class="page cover swipeout" book="vm.book" parse-emoji=".author, .title">
                             <cover book="book" pic="book.cover.pic" size="560" editable="book.editable &amp;&amp; book.cover.editable"
-                            class="loaded" style="background-image:url(/assets/images/page/cover.jpg);">
+                            class="loaded" id="cover" style='background-image:url("http://120.77.245.158:8088/api/Book/GetPictureByShelfId?_ShelfId=a37f7a48-8166-4219-9497-1c4cb01b037e")'>
                                 <ng-transclude>
                                     <!---->
                                 </ng-transclude>
                             </cover>
+                            <div style="align-text:center; font-size:100px; positon:absolute; top:150px" id="title"></div>
 
                                         <div class="swipeout-actions-right">
                                             <a href="#" class="swipeout-delete">
@@ -265,6 +291,14 @@
 <script type="text/javascript" src="/assets/js/framework7.min.js"></script>
 <script src="/assets/js/jquery-1.10.1.min.js" type="text/javascript" ></script>
 <script src="/assets/js/underscore.js" type="text/javascript" ></script>
+<script src="/assets/js/jquery.xgallerify.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var gallery = $('.photos').gallerify({
+        margin:5,
+        mode:'default',
+        lastRow:'adjust'
+    }); 
+</script>
 <script type="text/template" id="comment">
     <p>
         <span><%=authorName%>：</span><%=content%>
@@ -272,19 +306,21 @@
 </script>
 <script type="text/template" id="page_template">
     <li class="page content row" book="vm.book" page-data="page" parse-emoji=".book-title" ng-repeat="page in vm.book.pages | limitTo: vm.limit track by $index">
+        <button title="Close (Esc)" type="button" class="mfp-close" style="position: absolute;z-index: 1;right: 10px; width:30px; height: 30px; background:url(assets/images/delete.png)"></button>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-            <text class="date" id="para_date"><%=date%></text><!--Parameter_Date-->
-            <text class="time" id="para_time" fill="#fff"><%=time%></text><!--Parameter_Time-->
+            <text class="date" id="para_date" style="font-size:80px; color:#309;text-decoration: underline;font-style: italic; position:relative; top:15px"><%=date%></text><!--Parameter_Date-->
+            <br style="height:100px">
+            <text class="time" id="para_time" fill="#fff" style="font-size:18px;position:relative;top:22px"><%=time%></text><!--Parameter_Time-->
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-            <div id="para_img"><%=img%></div><!--Parameter_Images-->
+            <div id="para_img" class="photos xgallerify"><%=img%></div><!--Parameter_Images-->
             <div id="para_content"><%=content%></div><!--Parameter_Content-->
         </div>
         <footer>
             <hr>
             <div class="pagination"><%=no%></div>
-            <div class="book-title">天堂向左，深圳往右</div>
-            <div class="date">2015/11</div>
+            <div class="book-title"><%=bookName%></div>
+            <div class="date"><%=yyyymm%></div>
         </footer>
     </li>
 </script>
@@ -304,6 +340,14 @@
         </span>
     </p>
 </script>
+
+<script type="text/template" id="image_template">
+    <img src=<%=imgA%> style="width:<%=widthA%>%;margin:2px">
+    <img src=<%=imgB%> style="width:<%=widthB%>%;margin:2px">
+</script>
+<script type="text/template" id="gallerify">
+        <img class="list-img" src=<%=img%>>
+</script>
 <script type="text/template" id="list_template">
 <li>
     <div class="po-avt-wrap">
@@ -320,7 +364,7 @@
     </div>
     <div class="r"></div>
     <div class="cmt-wrap">
-        <div class="like"><img src="wechat/images/l.png"><%+likes%></div>
+        <div class="like"><img src="wechat/images/l.png"><%=likes%></div>
         <div class="cmt-list">
             <%=comments%>
         </div>
@@ -356,18 +400,26 @@ function timeStamp2String (time){
          var mseconds = datetime.getMilliseconds();
          return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;
 };
+if(window.sessionStorage.getItem("UserCode")){
+    console.log(window.sessionStorage);
+}else{
+    window.location="http://120.77.245.158/login";
+}
 jQuery(document).ready(function() {
+        var id = (window.location.hash).split('#')[1];
+        $("#cover").attr("style","background:url('http://120.77.245.158:8088/api/Book/GetPictureByShelfId?_ShelfId="+id+"')");
         var template = _.template($('#list_template').html());
         $.ajax({
                 type:       "GET",
-                url:        '/assets/json/1490247048.json',
+                url:        'http://120.77.245.158:8088/api/Book/GetBookInfoById?_Id=' + id,
                 dataType:   "json",
                 success: function(data) {
-                    console.log(data);
+                    //console.log(data);
+                    $(document).attr("title",data.BookShelf.c_BookName);
                     options="";
                     var page=_.template($('#page_template').html());
                     var pages="";
-                    for(var i = 0; i < data.length; i++){
+                    for(var i = 0; i < data.bookDataOfPage_List.length; i++){
                         /*赞
                         var likes="";
                         for(var n=0;n < data[i].likes.length; n++){
@@ -385,15 +437,18 @@ jQuery(document).ready(function() {
                                 });
                         }
                         */
-                        $('#para_author*').html(data[i].authorName);  
-                        $('#para_from').html(timeStamp2String(data[i].timestamp*1000));  
-                        $('#para_to').html(timeStamp2String(data[0].timestamp*1000)); 
+                        $('#para_author*').html(data.BookShelf.c_Author);  
+                        $('#para_from').html(data.bookDataOfPage_List[0].c_MessageDate);  
+                        $('#para_to').html(data.bookDataOfPage_List[i].c_MessageDate); 
+                        $('#cover').html(data.bookDataOfPage_List[i].c_BookName);
                         var Simage=_.template($('#images').html());
                         var Dimage=_.template($('#double_images').html());
+                        var Ximage=_.template($('#image_template').html());
                         var images="";
-                        if(data[i].mediaList.length == 1) {
+                        /*
+                        if(data[i].mediaList.length > 0) {
                             imgsrc = (data[i].mediaList[0].indexOf("qpic.cn/mm")>0?"https://weixinshu.com/images/fetch?url=":"")+data[i].mediaList[0];
-                            images = Simage(
+                            images = Ximage(
                             {
                                 img:        imgsrc
                             });
@@ -420,6 +475,7 @@ jQuery(document).ready(function() {
                         $('#para_img').html(images);                        
                         $('#para_content').html(data[i].content);
                         /*整体*/
+                        /*
                         pages += page(
                         {
                             date:       timeStamp2date(data[i].timestamp*1000),
@@ -440,6 +496,91 @@ jQuery(document).ready(function() {
                             comments:   comments
                         })
                         */
+                    var pages="";
+                    var pageNumber =0;
+                    for (var i = 0; i < data.bookDataOfPage_List.length; i++) {
+                        pageNumber ++;
+                        var images="";
+                        var imageHeight = 0;
+                        for (var j = 0; j < data.bookDataOfPage_List[i].ImgData_List.length; j+=2) {
+                            //imgsrc ="";
+                            var imgsrc1 = (data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl.indexOf("qpic.cn/mm")>0?"https://weixinshu.com/images/fetch?url=":"")+data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl;
+                            var w1 = data.bookDataOfPage_List[i].ImgData_List[j].c_Width;
+                            var h1 = data.bookDataOfPage_List[i].ImgData_List[j].c_Height;
+                            //console.log(h1);
+                            if(j+1 < data.bookDataOfPage_List[i].ImgData_List.length){
+                                var imgsrc2 = (data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl.indexOf("qpic.cn/mm")>0?"https://weixinshu.com/images/fetch?url=":"")+data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl;
+                                var w2 = data.bookDataOfPage_List[i].ImgData_List[j+1].c_Width;
+                                var h2 = data.bookDataOfPage_List[i].ImgData_List[j+1].c_Height;
+                                widthA = w1 * 85 / (w1 + w2*h1/h2) ;
+                                widthB = (w2*h1/h2) * 85 / (w1 + w2*h1/h2) ;
+                                imageHeight += h1 * 329.8 / (w1 + w2*h1/h2);
+                                if(imageHeight > 650){
+                                    pages += page(
+                                    {
+                                        no:                 pageNumber,
+                                        date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
+                                        time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                        img:                images,
+                                        content:            null,
+                                        authorName:         data.BookShelf.c_Author,
+                                        bookName:           data.BookShelf.c_BookName,
+                                        yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" +
+data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月"                                    })
+                                    images="";
+                                    imageHeight = 0;
+                                    pageNumber ++;
+                                }
+                            }
+                            else{
+                                imgsrc2 = "#";
+                                widthA = 85;
+                                widthB = "0%;display:none;height:0";
+                                imageHeight += h1 / w1 * 329.8;
+                                if(imageHeight > 650){
+                                    pages += page(
+                                    {
+                                        no:                 pageNumber,
+                                        date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
+                                        time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                        img:                images,
+                                        content:            null,
+                                        authorName:         data.BookShelf.c_Author,
+                                        bookName:           data.BookShelf.c_BookName,
+                                        yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" +
+data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月" 
+                                    })
+                                    images="";
+                                    imageHeight = 0;
+                                    pageNumber ++;
+                                }
+                            }
+                            images+=Ximage(
+                            {
+                                imgA:            imgsrc1,
+                                imgB:            imgsrc2,
+                                widthA:          widthA,
+                                widthB:          widthB
+                            })
+                            //console.log(imageHeight);
+                        };
+                        pages += page(
+                        {
+                            no:                 pageNumber,
+                            date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
+                            time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                            img:                images,
+                            content:            data.bookDataOfPage_List[i].c_Content,
+                            authorName:         data.BookShelf.c_Author,
+                            bookName:           data.BookShelf.c_BookName,
+                            yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" +
+data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月" 
+                        })
+                        if(imageHeight>650){
+                        console.log(data.bookDataOfPage_List[i].c_Content)
+                        console.log(imageHeight);}
+                    };                    
+                    //console.log(data.bookDataOfPage_List[i]);
                     }
                     $("#page_lists").append(pages);
                 },

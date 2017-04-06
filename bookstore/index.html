@@ -45,37 +45,7 @@
 			<div class="container">
 
 				<!-- Recomend products Slider -->
-				<div class="recomend-slider">
-
-					<!-- Item -->
-					<div class="item">
-						<a href="../compose.html"><img src="images/cover/cover06.jpg" alt=""></a>
-					</div>
-					<!-- Item -->
-
-					<!-- Item -->
-					<div class="item">
-						<a href="../compose.html"><img src="images/cover/cover02.jpg" alt=""></a>
-					</div>
-					<!-- Item -->
-
-					<!-- Item -->
-					<div class="item">
-						<a href="../compose.html"><img src="images/cover/cover03.jpg" alt=""></a>
-					</div>
-					<!-- Item -->
-
-					<!-- Item -->
-					<div class="item">
-						<a href="../compose.html"><img src="images/cover/cover04.jpg" alt=""></a>
-					</div>
-					<!-- Item -->
-
-					<!-- Item -->
-					<div class="item">
-						<a href="../compose.html"><img src="images/cover/cover05.jpg" alt=""></a>
-					</div>
-					<!-- Item -->
+				<div class="recomend-slider" id="book_shelf">
 
 				</div>
 				<!-- Recomend products Slider -->
@@ -114,8 +84,47 @@
 <script src="js/isotope.pkgd.js"></script>					 
 <script src="js/wow-min.js"></script>			
 <script src="js/classie.js"></script>					
-<script src="js/main.js"></script>		
+<script src="js/main.js"></script>	
+<script src="../assets/js/jquery-1.10.1.min.js" type="text/javascript" ></script>
+<script src="../assets/js/underscore.js" type="text/javascript" ></script>	
 
+<script type="text/template" id="book_template">
+	<div class="item">
+		<a href="../compose.html#<%=id%>"><img src="../assets/images/cover/<%=cover%>" alt="<%=bookName%>" style="width:200px"></a>
+		<p style="position:relative;top:-200px;z-index:1;font-size:40px"><%=bookName%></p>
+	</div>
+</script>
+<script type="text/javascript">
+
+jQuery(document).ready(function() {
+	if(window.sessionStorage.getItem("UserCode")){
+	 	var userId = window.sessionStorage.getItem("UserCode");
+    }else{
+        window.location="http://120.77.245.158/login";
+    }
+	 var book = _.template($('#book_template').html());
+	 $.ajax({
+        type:       "GET",
+        url:        'http://120.77.245.158:8088/api/Book/GetBookDataByUserId?UserId=' + userId,
+        dataType:   "json",
+        success: function(data) {
+        	var shelf = "";
+        	for(var i = 0; i< data.length; i++) {
+        		shelf += book({
+        			cover: 			data[i].c_CoverImage,
+        			bookName: 		data[i].c_BookName,
+        			id: 			data[i].c_ID
+        		})
+        	}
+        	$("#book_shelf").html(shelf);
+			$(document).attr("title",data[0].c_Author+"的书架");
+		},
+		error: function(data) {
+			console.log("通知应飞改bug");
+		}
+	});
+});
+</script>
 <!-- Switcher JS -->
 <script type="text/javascript" src="switcher/cookie.js"></script>
 <script type="text/javascript" src="switcher/colorswitcher.js"></script>
