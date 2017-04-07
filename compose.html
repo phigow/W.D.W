@@ -23,6 +23,8 @@
     <!-- FONT AWESOME CSS -->
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/fonts/linear-fonts.css">
+    <!-- EMOJI CSS -->
+    <link rel="stylesheet" href="assets/css/jquery.emoji.css"/>
     <!-- PAGE CSS -->
     <link rel="stylesheet" href="assets/css/book-page.css">
     <script src="https://code.jquery.com/jquery-git.js"></script>
@@ -292,6 +294,8 @@
 <script src="/assets/js/jquery-1.10.1.min.js" type="text/javascript" ></script>
 <script src="/assets/js/underscore.js" type="text/javascript" ></script>
 <script src="/assets/js/jquery.xgallerify.min.js" type="text/javascript"></script>
+<!--the js for this plugin-->
+<script src="/assets/js/jquery.emoji.min.js"></script>
 <script type="text/javascript">
     var gallery = $('.photos').gallerify({
         margin:5,
@@ -306,7 +310,7 @@
 </script>
 <script type="text/template" id="page_template">
     <li class="page content row" book="vm.book" page-data="page" parse-emoji=".book-title" ng-repeat="page in vm.book.pages | limitTo: vm.limit track by $index">
-        <button title="Close (Esc)" type="button" class="mfp-close" style="position: absolute;z-index: 1;right: 10px; width:30px; height: 30px; background:url(assets/images/delete.png)"></button>
+        <button title="Close (Esc)" type="button" class="mfp-close" style="display:none; position: absolute;z-index: 1;right: 10px; width:30px; height: 30px; background:url(assets/images/delete.png)"></button>
         <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
             <text class="date" id="para_date" style="font-size:80px; color:#309;text-decoration: underline;font-style: italic; position:relative; top:15px"><%=date%></text><!--Parameter_Date-->
             <br style="height:100px">
@@ -583,6 +587,122 @@ data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月"
                     //console.log(data.bookDataOfPage_List[i]);
                     }
                     $("#page_lists").append(pages);
+                    $("#page_lists").emojiParse(
+                    {
+                        icons: [{
+                            path: "/assets/images/wx/",
+                            file: ".png",
+                            placeholder: "\\[{alias}]",
+                            alias: {
+                                0    :  "微笑", 
+                                1    :  "撇嘴", 
+                                2    :  "色", 
+                                3    :  "发呆", 
+                                4    :  "得意", 
+                                5    :  "流泪", 
+                                6    :  "害羞", 
+                                7    :  "闭嘴", 
+                                8    :  "睡", 
+                                9    :  "大哭", 
+                                10   :  "尴尬", 
+                                11   :  "发怒", 
+                                12   :  "调皮", 
+                                13   :  "呲牙", 
+                                14   :  "惊讶", 
+                                15   :  "难过", 
+                                16   :  "酷", 
+                                17   :  "冷汗", 
+                                18   :  "抓狂", 
+                                19   :  "吐", 
+                                20   :  "偷笑", 
+                                21   :  "愉快", 
+                                22   :  "白眼", 
+                                23   :  "傲慢", 
+                                24   :  "饥饿", 
+                                25   :  "困", 
+                                26   :  "惊恐", 
+                                27   :  "流汗", 
+                                28   :  "憨笑", 
+                                29   :  "悠闲", 
+                                30   :  "奋斗", 
+                                31   :  "咒骂", 
+                                32   :  "疑问", 
+                                33   :  "嘘", 
+                                34   :  "晕", 
+                                35   :  "疯了", 
+                                36   :  "哀", 
+                                37   :  "骷髅", 
+                                38   :  "敲打", 
+                                39   :  "再见", 
+                                40   :  "擦汗", 
+                                41   :  "抠鼻", 
+                                42   :  "鼓掌", 
+                                43   :  "糗大了",
+                                44   :  "坏笑", 
+                                45   :  "左哼哼",
+                                46   :  "右哼哼",
+                                47   :  "哈欠", 
+                                48   :  "鄙视", 
+                                49   :  "委屈", 
+                                50   :  "快哭了",
+                                51   :  "阴险", 
+                                52   :  "亲亲", 
+                                53   :  "吓", 
+                                54   :  "可怜", 
+                                55   :  "菜刀", 
+                                56   :  "西瓜", 
+                                57   :  "啤酒", 
+                                58   :  "篮球", 
+                                59   :  "乒乓", 
+                                60   :  "咖啡", 
+                                61   :  "饭", 
+                                62   :  "猪头", 
+                                63   :  "玫瑰", 
+                                64   :  "凋谢", 
+                                65   :  "嘴唇", 
+                                66   :  "爱心", 
+                                67   :  "心碎", 
+                                68   :  "蛋糕", 
+                                69   :  "闪电", 
+                                70   :  "炸弹", 
+                                71   :  "刀", 
+                                72   :  "足球", 
+                                73   :  "瓢虫", 
+                                74   :  "便便", 
+                                75   :  "月亮", 
+                                76   :  "太阳", 
+                                77   :  "礼物", 
+                                78   :  "拥抱", 
+                                79   :  "强", 
+                                80   :  "弱", 
+                                81   :  "握手", 
+                                82   :  "胜利", 
+                                83   :  "抱拳", 
+                                84   :  "勾引", 
+                                85   :  "拳头", 
+                                86   :  "差劲", 
+                                87   :  "爱你", 
+                                88   :  "NO", 
+                                89   :  "OK", 
+                                90   :  "爱情", 
+                                91   :  "飞吻", 
+                                92   :  "跳跳", 
+                                93   :  "发抖", 
+                                94   :  "怄火", 
+                                95   :  "转圈", 
+                                96   :  "磕头", 
+                                97   :  "回头", 
+                                98   :  "跳绳", 
+                                99   :  "投降", 
+                                100  :  "激动", 
+                                101  :  "乱舞", 
+                                102  :  "献吻", 
+                                103  :  "左太极",
+                                104  :  "右太极"
+                            }
+                        }]
+                    });
+
                 },
                 error: function(data) {
                     console.log(data.length);
