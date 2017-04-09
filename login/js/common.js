@@ -87,7 +87,7 @@ $("#login_input4 input").on('click',function(){//登陆按钮
 					$("#login_content_log_03").fadeIn();
 					sessionStorage.setItem('UserCode', json.ID);
 					//alert(getCookie(user));
-					var t1 = setTimeout("window.location.href='http://120.77.245.158/bookstore'",1000);
+					var t1 = setTimeout("window.location.href='http://120.77.245.158/bookshelf.html'",1000);
 				}
 				else{
 					document.getElementById("login_tip").innerHTML = json.UserName;}

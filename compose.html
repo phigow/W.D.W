@@ -54,6 +54,23 @@
             margin:auto;
             font-size:0px;
         }
+        .book-name {
+            position: absolute;
+            z-index: 1;
+            top: 170px;
+            right: 15px;
+            font-size:55px;
+            font-weight: bold;
+        }
+
+        .author {
+            position:  absolute;
+            z-index:  1;
+            top: 230px;
+            right:  15px;
+            font-size: 23px;
+            font-style: italic;     
+        }
     </style>
     <!--[if IE]>
 </head>
@@ -65,9 +82,11 @@
                 <div class="pages-container" ng-switch-when="cover" auto-resize="" style="transform: scale(0.644643);">
                     <ul class="pages" id="page_lists">
                         <!--封面页-->
-                        <li class="page cover swipeout" book="vm.book" parse-emoji=".author, .title">
+                        <li class="page cover swipeout" book="vm.book" parse-emoji=".author, .title">                                    
+                            <div class="book-name">{bookName}</div>
+                            <div class="author">{author}</div>
                             <cover book="book" pic="book.cover.pic" size="560" editable="book.editable &amp;&amp; book.cover.editable"
-                            class="loaded" id="cover" style='background-image:url("http://120.77.245.158:8088/api/Book/GetPictureByShelfId?_ShelfId=a37f7a48-8166-4219-9497-1c4cb01b037e")'>
+                            class="loaded" id="cover" style=''>
                                 <ng-transclude>
                                     <!---->
                                 </ng-transclude>
@@ -411,7 +430,6 @@ if(window.sessionStorage.getItem("UserCode")){
 }
 jQuery(document).ready(function() {
         var id = (window.location.hash).split('#')[1];
-        $("#cover").attr("style","background:url('http://120.77.245.158:8088/api/Book/GetPictureByShelfId?_ShelfId="+id+"')");
         var template = _.template($('#list_template').html());
         $.ajax({
                 type:       "GET",
@@ -420,6 +438,9 @@ jQuery(document).ready(function() {
                 success: function(data) {
                     //console.log(data);
                     $(document).attr("title",data.BookShelf.c_BookName);
+                    $("#cover").attr("style","background-image:url(/assets/images/cover/" + data.BookShelf.c_CoverImage+ ")");
+                    $(".book-name").html(data.BookShelf.c_BookName);
+                    $(".author").html(data.BookShelf.c_Author + "·著");
                     options="";
                     var page=_.template($('#page_template').html());
                     var pages="";
