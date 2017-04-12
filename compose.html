@@ -120,7 +120,7 @@
                                 微信书当前版本编目数据
                             </p>
                             <p>
-                                伴你成长的岁月 / [我的我]<span id="para_author">{author}</span><!-- Parameter_Author --> 著;
+                                <span id="para_bookName">{bookName}</span><!-- Parameter_bookNamer --> / [我的我]<span id="para_author">{author}</span><!-- Parameter_Author --> 著;
                             </p>
                             <p>
                                 我的我&middot;微信书,wodemy.com, 2017.3
@@ -129,7 +129,7 @@
                                 XINSHU-XXXXX-290450
                             </p>
                             <p>
-                                I.①伴你成长的岁月...; II. ① <span id="para_author">{author}</span><!-- Parameter_Author --> ...; III. ①文学随笔，语录-微信书-中国-现代; IV. ①NO.290450
+                                I.①<span id="para_bookName">{bookName}</span><!-- Parameter_bookNamer -->; II. ① <span id="para_author">{author}</span><!-- Parameter_Author --> ; III. ①文学随笔，语录-微信书-中国-现代; IV. ①NO.290450
                             </p>
                             <p>
                                 我的我&middot;微信书荣誉出版 (2017)290450号
@@ -138,13 +138,13 @@
                                 著作权归原作者所有
                             </p>
                             <p>
-                                All rights reserved under Xinshu and Author <span id="para_author">{author}</span><!-- Parameter_Author --> . This book may not
+                                All rights reserved under Wodewo and Author <span id="para_author">{author}</span><!-- Parameter_Author --> . This book may not
                                 be reproduced or used in any form or by any means without permission of
                                 the author.
                             </p>
                             <p>
                                 <b>
-                                    伴你成长的岁月
+                                    <span id="para_bookName">{bookName}</span><!-- Parameter_bookNamer -->
                                 </b>
                             </p>
                             <p>
@@ -213,7 +213,7 @@
                                             开　　本
                                         </td>
                                         <td>
-                                            870mm &times; 1092mm 1/32
+                                            148mm &times; 210mm 1/32
                                         </td>
                                     </tr>
                                     <tr>
@@ -465,9 +465,9 @@ jQuery(document).ready(function() {
                         }
                         */
                         $('#para_author*').html(data.BookShelf.c_Author);  
-                        $('#para_from').html(data.bookDataOfPage_List[0].c_MessageDate);  
-                        $('#para_to').html(data.bookDataOfPage_List[i].c_MessageDate); 
-                        $('#cover').html(data.bookDataOfPage_List[i].c_BookName);
+                        $('#para_bookName*').html(data.BookShelf.c_BookName);  
+                        $('#para_from').html("<br>"+data.bookDataOfPage_List[0].c_MessageDate.split('T')[0]);  
+                        $('#para_to').html("<br>"+data.bookDataOfPage_List[i].c_MessageDate.split('T')[0]); 
                         var Simage=_.template($('#images').html());
                         var Dimage=_.template($('#double_images').html());
                         var Ximage=_.template($('#image_template').html());

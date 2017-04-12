@@ -10133,8 +10133,8 @@ nav.home .navigation a {
 #page .page.first-page .from {
 	width: 7em;
 	position: absolute;
-	right: 35%;
-	bottom: 8%
+	left: 5%;
+	top: 82%
 }
 
 #page .page.first-page .from:before {
@@ -10144,9 +10144,8 @@ nav.home .navigation a {
 #page .page.first-page .to {
 	width: 6em;
 	position: absolute;
-	right: 10%;
-	top: 41%;
-	font-size: .8em
+	right: 4%;
+	top: 82%;
 }
 
 #page .page.first-page .to:before {
