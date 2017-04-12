@@ -10253,7 +10253,7 @@ nav.home .navigation a {
 }
 
 #page .page.preface {
-	background-image: url(https://static.xinshu.me/assets/images/preface.png);
+	background-image: url("../images/preface.png");
 	background-position: 80% 10%;
 	padding-top: 230px;
 	padding-left: 100px;
