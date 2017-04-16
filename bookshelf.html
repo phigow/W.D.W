@@ -172,7 +172,7 @@
         <script type="text/template" id="book_template">
             <div class="col-md-3 col-sm-3">
                 <div class="single-product-item">
-                    <div class="sale-product-label"><span><%=status%></span></div>
+                    <div class="sale-product-label <%=label%>"><span><%=status%></span></div>
                     <div class="book-name"><%=bookName%></div>
                     <div class="author"><%=author%>·著</div>
                     <div class="single-product clearfix">
@@ -228,8 +228,19 @@
                 success: function(data) {
                     var shelf = "";
                     for(var i = 0; i< data.length; i++) {
+                        var bookState = "";
+                        var bookLabel = "";
+                        switch(data[i].c_State) {
+                            case 1:                 bookState = "可编辑";   bookLabel = "edit-label";  break;
+                            case 2:                 bookState = "已下单";   bookLabel = "order-label";  break;
+                            case 3:                 bookState = "印刷中";   bookLabel = "print-label";  break;
+                            case 4:                 bookState = "派送中";   bookLabel = "send-label";  break;
+                            case 5:                 bookState = "完  成";   bookLabel = "over-label";  break;
+                            default:                bookState = "";         bookLabel = "none-label";
+                        }
                         shelf += book({
-                            status:            "成书",
+                            label:             bookLabel,
+                            status:            bookState,
                             coverPic:          data[i].c_CoverImage==null?"add.jpg":data[i].c_CoverImage,
                             bookName:          data[i].c_BookName,
                             author:            data[i].c_Author,

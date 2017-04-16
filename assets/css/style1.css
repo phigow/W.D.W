@@ -902,6 +902,29 @@ a.remove-product {
     top: 15px;
     z-index: 10;
 }
+.none-label {
+    display: none;
+}
+.edit-label {
+    background-color: #35e050;
+    color: #ffffff;
+}
+.order-label {
+    background-color: #e03550;
+    color: #ffffff;
+}
+.print-label {
+    background-color: #3550e0;
+    color: #ffffff;
+}
+.send-label {
+    background-color: #baa010;
+    color: #ffffff;
+}
+.over-label {
+    background-color: #333;
+    color: #ffffff;
+}
 .new-product-label {
     background: #ffffff none repeat scroll 0 0;
     border: 1px solid #d5d5d5;
