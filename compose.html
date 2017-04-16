@@ -86,11 +86,12 @@
                             <div class="book-name">{bookName}</div>
                             <div class="author">{author}</div>
                             <cover book="book" pic="book.cover.pic" size="560" editable="book.editable &amp;&amp; book.cover.editable"
-                            class="loaded" id="cover" style=''>
+                            class="loaded" style='display:none'>
                                 <ng-transclude>
                                     <!---->
                                 </ng-transclude>
                             </cover>
+                            <img id="cover" src="assets/images/cover/add.jpg" style="top:0; left:0; width:100%; height:100%; position:absolute">
                             <div style="align-text:center; font-size:100px; positon:absolute; top:150px" id="title"></div>
 
                                         <div class="swipeout-actions-right">
@@ -101,6 +102,7 @@
                         </li>
                         <!--扉页-->
                         <li class="page first-page" parse-emoji=".author">
+                            <img src="assets/images/page/front-page.jpg" style="left: 0px; width:100%; height:100%; position:absolute; top: 0px">
                             <div class="author">
                                 <span id="para_author">{author}</span><!-- Parameter_Author -->
                                 <span>
@@ -240,14 +242,6 @@
                                             无价
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>
-                                            书　　号
-                                        </td>
-                                        <td>
-                                            290450
-                                        </td>
-                                    </tr>
                                 </tbody>
                             </table>
                             <p>
@@ -278,6 +272,7 @@
                         ng-switch="!book.finalized &amp;&amp; book.auth === 'edit'" book="vm.book">
                             <!---->
                             <!---->
+                            <img src="assets/images/preface.png" style="left: 270px; position:absolute; top: -10px">
                             <div class="content-container" ng-switch-when="false" parse-emoji="">
                                 <p class="content" style="margin-bottom:1.5em">
             人生走过漫长的岁月。
@@ -300,7 +295,6 @@
                             </div>
                         </li>
                         <!--正文-->
-                        
                     </ul>
 
     <a href="pay.html" target="new" class="swipe-out">提交</a>
@@ -328,6 +322,18 @@
     <p>
         <span><%=authorName%>：</span><%=content%>
     </p>
+</script>
+
+<script type="text/template" id="month_template">
+    <li class="page insert default month-<%=month%>" book="vm.book" year="vm.stateParams.year" month="vm.stateParams.month"> 
+        <!---->
+        <div ng-if="book.style.insertPage!=='simple'"> 
+            <img src="assets/images/month/<%=month%>.jpg" style="position:absolute; top:110px; left:90px; width:380px; height:480px;">
+            <div class="date"> <%=year%>/<%=month%> </div> 
+            <div class="poem"></div> 
+        </div><!----> 
+    <!----> 
+    </li>
 </script>
 <script type="text/template" id="page_template">
     <li class="page content row" book="vm.book" page-data="page" parse-emoji=".book-title" ng-repeat="page in vm.book.pages | limitTo: vm.limit track by $index">
@@ -440,11 +446,12 @@ jQuery(document).ready(function() {
                 success: function(data) {
                     //console.log(data);
                     $(document).attr("title",data.BookShelf.c_BookName);
-                    $("#cover").attr("style","background-image:url(/assets/images/cover/" + data.BookShelf.c_CoverImage+ ")");
+                    $("#cover").attr("src","/assets/images/cover/" + data.BookShelf.c_CoverImage);
                     $(".book-name").html(data.BookShelf.c_BookName);
                     $(".author").html(data.BookShelf.c_Author + "·著");
                     options="";
                     var page=_.template($('#page_template').html());
+                    var month=_.template($('#month_template').html());
                     var pages="";
                     for(var i = 0; i < data.bookDataOfPage_List.length; i++){
                         /*赞
@@ -526,17 +533,25 @@ jQuery(document).ready(function() {
                     var pages="";
                     var pageNumber =0;
                     for (var i = 0; i < data.bookDataOfPage_List.length; i++) {
+                        if(i==0 || data.bookDataOfPage_List[i].c_MessageDate.split('T')[0].split('-')[1] != data.bookDataOfPage_List[i-1].c_MessageDate.split('T')[0].split('-')[1]){
+                            pages += month(
+                            {
+                                year:           data.bookDataOfPage_List[i].c_MessageDate.split('T')[0].split('-')[0],
+                                month:          data.bookDataOfPage_List[i].c_MessageDate.split('T')[0].split('-')[1]
+                            })
+                            pageNumber ++;
+                        }
                         pageNumber ++;
                         var images="";
                         var imageHeight = 0;
                         for (var j = 0; j < data.bookDataOfPage_List[i].ImgData_List.length; j+=2) {
                             //imgsrc ="";
-                            var imgsrc1 = (data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl.indexOf("qpic.cn/mm")>0?"https://weixinshu.com/images/fetch?url=":"")+data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl;
+                            var imgsrc1 = (data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl.indexOf("qpic.cn/mm")>0?"http://120.77.245.158:8088/api/ApiTools/GetPictureByUrl?_Url=":"")+data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl;
                             var w1 = data.bookDataOfPage_List[i].ImgData_List[j].c_Width;
                             var h1 = data.bookDataOfPage_List[i].ImgData_List[j].c_Height;
                             //console.log(h1);
                             if(j+1 < data.bookDataOfPage_List[i].ImgData_List.length){
-                                var imgsrc2 = (data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl.indexOf("qpic.cn/mm")>0?"https://weixinshu.com/images/fetch?url=":"")+data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl;
+                                var imgsrc2 = (data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl.indexOf("qpic.cn/mm")>0?"http://120.77.245.158:8088/api/ApiTools/GetPictureByUrl?_Url=":"")+data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl;
                                 var w2 = data.bookDataOfPage_List[i].ImgData_List[j+1].c_Width;
                                 var h2 = data.bookDataOfPage_List[i].ImgData_List[j+1].c_Height;
                                 widthA = w1 * 85 / (w1 + w2*h1/h2) ;
@@ -579,7 +594,7 @@ data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月"
                                     })
                                     images="";
                                     imageHeight = 0;
-                                    pageNumber ++;
+                                    pageNumber ++; 
                                 }
                             }
                             images+=Ximage(

@@ -10252,7 +10252,7 @@ nav.home .navigation a {
 }
 
 #page .page.preface {
-	background-image: url("../images/preface.png");
+	/*background-image: url("../images/preface.jpg");*/
 	background-position: 80% 10%;
 	padding-top: 230px;
 	padding-left: 100px;
@@ -10397,7 +10397,7 @@ nav.home .navigation a {
 	color: #595757
 }
 
-.insert.default.month-1 .poem:before,.insert.wenyi.month-1 .poem:before {
+.insert.default.month-01 .poem:before,.insert.wenyi.month-01 .poem:before {
 	content: "一月一回同拜表，\a莫辞侵早过中桥。";
 	color: #333
 }
@@ -10411,7 +10411,7 @@ nav.home .navigation a {
 	color: #9F7658
 }
 
-.insert.default.month-2 .poem:before,.insert.wenyi.month-2 .poem:before {
+.insert.default.month-02 .poem:before,.insert.wenyi.month-02 .poem:before {
 	content: "不知细叶谁裁出，\a二月春风似剪刀。";
 	color: #333
 }
@@ -10425,7 +10425,7 @@ nav.home .navigation a {
 	color: #76C28C
 }
 
-.insert.default.month-3 .poem:before,.insert.wenyi.month-3 .poem:before {
+.insert.default.month-03 .poem:before,.insert.wenyi.month-03 .poem:before {
 	content: "故人西辞黄鹤楼，\a烟花三月下扬州。";
 	color: #333
 }
@@ -10439,7 +10439,7 @@ nav.home .navigation a {
 	color: #F5D461
 }
 
-.insert.default.month-4 .poem:before,.insert.wenyi.month-4 .poem:before {
+.insert.default.month-04 .poem:before,.insert.wenyi.month-04 .poem:before {
 	content: "人间四月芳菲尽，\a山寺桃花始盛开。";
 	color: #333
 }
@@ -10453,7 +10453,7 @@ nav.home .navigation a {
 	color: #EF8455
 }
 
-.insert.default.month-5 .poem:before,.insert.wenyi.month-5 .poem:before {
+.insert.default.month-05 .poem:before,.insert.wenyi.month-05 .poem:before {
 	content: "五月天山雪，\a无花只有寒。";
 	color: #333
 }
@@ -10467,7 +10467,7 @@ nav.home .navigation a {
 	color: #F098A8
 }
 
-.insert.default.month-6 .poem:before,.insert.wenyi.month-6 .poem:before {
+.insert.default.month-06 .poem:before,.insert.wenyi.month-06 .poem:before {
 	content: "毕竟西湖六月中，\a风光不与四时同。";
 	color: #333
 }
@@ -10481,7 +10481,7 @@ nav.home .navigation a {
 	color: #E61A34
 }
 
-.insert.default.month-7 .poem:before,.insert.wenyi.month-7 .poem:before {
+.insert.default.month-07 .poem:before,.insert.wenyi.month-07 .poem:before {
 	content: "七月六日苦炎热，\a对食暂餐还不能。";
 	color: #333
 }
@@ -10495,7 +10495,7 @@ nav.home .navigation a {
 	color: #F5CEB2
 }
 
-.insert.default.month-8 .poem:before,.insert.wenyi.month-8 .poem:before {
+.insert.default.month-08 .poem:before,.insert.wenyi.month-08 .poem:before {
 	content: "八月湖水平，\a涵虚混太清。";
 	color: #333
 }
@@ -10509,7 +10509,7 @@ nav.home .navigation a {
 	color: #969697
 }
 
-.insert.default.month-9 .poem:before,.insert.wenyi.month-9 .poem:before {
+.insert.default.month-09 .poem:before,.insert.wenyi.month-09 .poem:before {
 	content: "可怜九月初三夜，\a露似珍珠月似弓。";
 	color: #333
 }
@@ -13046,3 +13046,8 @@ a.label[data-grade="7"],a.label[data-grade="8"],a.label[data-grade="9"],a.label[
 	transform: rotate(-45deg)
 }
 /*# sourceMappingURL=../maps/styles/app-31ab6b536d.css.map */
+
+#para_content {
+	font-size: 1.5em;
+	line-height:28px
+}
