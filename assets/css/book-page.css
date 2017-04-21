@@ -13049,5 +13049,7 @@ a.label[data-grade="7"],a.label[data-grade="8"],a.label[data-grade="9"],a.label[
 
 #para_content {
 	font-size: 1.5em;
-	line-height:28px
+	line-height: 28px;
+	margin-left: -25px;
+	margin-right: 25px
 }
