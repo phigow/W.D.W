@@ -17,7 +17,9 @@ Version      : 1.0
 }
 
 img,legend {
-	border: 0
+	background: #fff;
+    border: solid 1px #ccc;
+    padding: 4px;
 }
 
 legend,ul {
@@ -13051,5 +13053,6 @@ a.label[data-grade="7"],a.label[data-grade="8"],a.label[data-grade="9"],a.label[
 	font-size: 1.5em;
 	line-height: 28px;
 	margin-left: -25px;
-	margin-right: 25px
+	margin-right: 25px;
+	text-align: justify
 }
