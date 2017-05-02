@@ -26,11 +26,6 @@ function timeStamp2String (time){
          var mseconds = datetime.getMilliseconds();
          return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;
 };
-if(window.sessionStorage.getItem("UserCode")){
-    console.log(window.sessionStorage);
-}else{
-    window.location="http://120.77.245.158/login";
-}
 jQuery(document).ready(function() {
         var id = (window.location.hash).split('#')[1];
         var template = _.template($('#list_template').html());
@@ -125,9 +120,13 @@ jQuery(document).ready(function() {
                             comments:   comments
                         })
                         */
+                    var hwRatio = 329.8;
+                    var maxHeight = 657;
+                    var widthPercent = 85;
                     var pages="";
                     var pageNumber =0;
                     for (var i = 0; i < data.bookDataOfPage_List.length; i++) {
+                        /*月页*/
                         if(i==0 || data.bookDataOfPage_List[i].c_MessageDate.split('T')[0].split('-')[1] != data.bookDataOfPage_List[i-1].c_MessageDate.split('T')[0].split('-')[1]){
                             pages += month(
                             {
@@ -149,10 +148,10 @@ jQuery(document).ready(function() {
                                 var imgsrc2 = (data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl.indexOf("qpic.cn/mm")>0?"http://120.77.245.158:8088/api/ApiTools/GetPictureByUrl?_Url=":"")+data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl;
                                 var w2 = data.bookDataOfPage_List[i].ImgData_List[j+1].c_Width;
                                 var h2 = data.bookDataOfPage_List[i].ImgData_List[j+1].c_Height;
-                                widthA = w1 * 85 / (w1 + w2*h1/h2) ;
-                                widthB = (w2*h1/h2) * 85 / (w1 + w2*h1/h2) ;
-                                imageHeight += h1 * 329.8 / (w1 + w2*h1/h2);
-                                if(imageHeight > 657){
+                                widthA = w1 * widthPercent / (w1 + w2*h1/h2) ;
+                                widthB = (w2*h1/h2) * widthPercent / (w1 + w2*h1/h2) ;
+                                imageHeight += h1 * hwRatio / (w1 + w2*h1/h2);
+                                if(imageHeight > maxHeight){
                                     pages += page(
                                     {
                                         no:                 pageNumber,
@@ -170,10 +169,10 @@ jQuery(document).ready(function() {
                             }
                             else{
                                 imgsrc2 = "#";
-                                widthA = 85;
+                                widthA = widthPercent;
                                 widthB = "0%;display:none;height:0";
-                                imageHeight += h1 / w1 * 329.8;
-                                if(imageHeight > 657){
+                                imageHeight += h1 / w1 * hwRatio;
+                                if(imageHeight > maxHeight){
                                     pages += page(
                                     {
                                         no:                 pageNumber,
@@ -210,7 +209,7 @@ jQuery(document).ready(function() {
                             bookName:           data.BookShelf.c_BookName,
                             yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月" 
                         })
-                        if(imageHeight>657){
+                        if(imageHeight>maxHeight){
                         console.log(data.bookDataOfPage_List[i].c_Content)
                         console.log(imageHeight);}
                     };                    
