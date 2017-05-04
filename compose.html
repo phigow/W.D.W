@@ -56,22 +56,30 @@
             margin-left:-50px;
             margin-top:-10px;
         }
+        .stamp {
+            margin:auto;
+            font-size:0px;
+            margin-left:0px;
+            margin-top:-10px;
+        }
         .book-name {
             position: absolute;
             z-index: 1;
-            top: 170px;
-            right: 15px;
-            font-size:55px;
+            top: 520px;
+            font-size: 55px;
             font-weight: bold;
+            text-align: center;
+            width: 100%;
         }
 
         .author {
-            position:  absolute;
-            z-index:  1;
-            top: 230px;
-            right:  15px;
-            font-size: 23px;
-            font-style: italic;     
+           position: absolute;
+            z-index: 1;
+            top: 520px;
+            font-size: 55px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;     
         }
     </style>
     <!--[if IE]>
@@ -331,7 +339,7 @@
     <li class="page insert default month-<%=month%>" book="vm.book" year="vm.stateParams.year" month="vm.stateParams.month"> 
         <!---->
         <div ng-if="book.style.insertPage!=='simple'"> 
-            <img src="assets/images/month/<%=month%>.jpg" style="position:absolute; top:110px; left:90px; width:380px; height:480px;">
+            <img src="assets/images/month/<%=month%>.jpg" style="top: 90px; left: 80px; width: 400px; height: 400px; position: absolute; border-radius: 200px;">
             <div class="date"> <%=year%>/<%=month%> </div> 
             <div class="poem"></div> 
         </div><!----> 
@@ -349,6 +357,25 @@
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
             <div id="para_img" class="photos xgallerify"><%=img%></div><!--Parameter_Images-->
             <div id="para_content"><%=content%></div><!--Parameter_Content-->
+        </div>
+        <footer>
+            <hr>
+            <div class="pagination"><%=no%></div>
+            <div class="book-title"><%=bookName%></div>
+            <div class="date"><%=yyyymm%></div>
+        </footer>
+    </li>
+</script>
+<script type="text/template" id="lonely_page_template">
+    <li class="page content row" book="vm.book" page-data="page" parse-emoji=".book-title" ng-repeat="page in vm.book.pages | limitTo: vm.limit track by $index">
+        <button title="Close (Esc)" type="button" class="mfp-close" style="display:none; position: absolute;z-index: 1;right: 10px; width:30px; height: 30px; background:url(assets/images/delete.png)"></button>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <text class="date" id="para_date" style="font-size:80px; color:#309;text-decoration: underline;font-style: italic; position:relative; top:15px"><%=date%></text><!--Parameter_Date-->
+            <br style="height:100px">
+            <text class="time" id="para_time" fill="#fff" style="font-size:18px;position:relative;top:22px"><%=time%></text><!--Parameter_Time-->
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-left:-22px">
+            <img id="para_img" class="stamp xgallerify" style="float:left;width:60%;" src="<%=img%>"><span id="stamp_content"><%=content%></span></div>
         </div>
         <footer>
             <hr>
@@ -419,6 +446,13 @@ var $$ = Framework7.$;
 </script>
 
     <script type="text/javascript">
+jQuery(document).ready(function() {    
+if(window.sessionStorage.getItem("UserCode")){
+    console.log(window.sessionStorage);
+}else{
+    window.location="http://120.77.245.158/login";
+}
+});
     var topdf =function(){
         var pdf = new jsPDF('p','mm','a5');
         pdf.internal.scaleFactor = 1;
