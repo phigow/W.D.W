@@ -41,6 +41,7 @@ jQuery(document).ready(function() {
                     $(".author").html(data.BookShelf.c_Author + "·著");
                     options="";
                     var page=_.template($('#page_template').html());
+                    var Spage=_.template($('#lonely_page_template').html());
                     var month=_.template($('#month_template').html());
                     var pages="";
                     for(var i = 0; i < data.bookDataOfPage_List.length; i++){
@@ -125,6 +126,7 @@ jQuery(document).ready(function() {
                     var widthPercent = 85;
                     var pages="";
                     var pageNumber =0;
+                    var surroundBool = 1;
                     for (var i = 0; i < data.bookDataOfPage_List.length; i++) {
                         /*月页*/
                         if(i==0 || data.bookDataOfPage_List[i].c_MessageDate.split('T')[0].split('-')[1] != data.bookDataOfPage_List[i-1].c_MessageDate.split('T')[0].split('-')[1]){
@@ -143,6 +145,22 @@ jQuery(document).ready(function() {
                             var imgsrc1 = (data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl.indexOf("qpic.cn/mm")>0?"http://120.77.245.158:8088/api/ApiTools/GetPictureByUrl?_Url=":"")+data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl;
                             var w1 = data.bookDataOfPage_List[i].ImgData_List[j].c_Width;
                             var h1 = data.bookDataOfPage_List[i].ImgData_List[j].c_Height;
+                            surroundBool = 1;
+                            if(data.bookDataOfPage_List[i].ImgData_List.length==1&&(data.bookDataOfPage_List[i].c_Content.length > 100 || h1/w1 > 410/240)){
+                                surroundBool = 0;
+                                pages += Spage({
+                                    img:         imgsrc1,
+                                    width:       widthPercent/2,                                    
+                                    content:    data.bookDataOfPage_List[i].c_Content,
+                                        no:                 pageNumber,
+                                        date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
+                                        time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                            authorName:         data.BookShelf.c_Author,
+                                        bookName:           data.BookShelf.c_BookName,
+                                        yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月"                                    
+                                })
+                                continue;
+                            }
                             //console.log(h1);
                             if(j+1 < data.bookDataOfPage_List[i].ImgData_List.length){
                                 var imgsrc2 = (data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl.indexOf("qpic.cn/mm")>0?"http://120.77.245.158:8088/api/ApiTools/GetPictureByUrl?_Url=":"")+data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl;
@@ -198,6 +216,7 @@ jQuery(document).ready(function() {
                             })
                             //console.log(imageHeight);
                         };
+                        if(surroundBool) {
                         pages += page(
                         {
                             no:                 pageNumber,
@@ -209,6 +228,7 @@ jQuery(document).ready(function() {
                             bookName:           data.BookShelf.c_BookName,
                             yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月" 
                         })
+                    }
                         if(imageHeight>maxHeight){
                         console.log(data.bookDataOfPage_List[i].c_Content)
                         console.log(imageHeight);}
