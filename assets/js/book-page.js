@@ -146,18 +146,18 @@ jQuery(document).ready(function() {
                             var w1 = data.bookDataOfPage_List[i].ImgData_List[j].c_Width;
                             var h1 = data.bookDataOfPage_List[i].ImgData_List[j].c_Height;
                             surroundBool = 1;
-                            if(data.bookDataOfPage_List[i].ImgData_List.length==1&&(data.bookDataOfPage_List[i].c_Content.length > 100 || h1/w1 > 410/240)){
+                            if((data.bookDataOfPage_List[i].ImgData_List.length==1||j==data.bookDataOfPage_List[i].ImgData_List.length-1)&&(data.bookDataOfPage_List[i].c_Content.length > 100 || h1/w1 > 410/240)){
                                 surroundBool = 0;
                                 pages += Spage({
-                                    img:         imgsrc1,
-                                    width:       widthPercent/2,                                    
-                                    content:    data.bookDataOfPage_List[i].c_Content,
-                                        no:                 pageNumber,
-                                        date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
-                                        time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
-                                            authorName:         data.BookShelf.c_Author,
-                                        bookName:           data.BookShelf.c_BookName,
-                                        yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月"                                    
+                                    img:                imgsrc1,
+                                    width:              widthPercent/2,                                    
+                                    content:            data.bookDataOfPage_List[i].c_Content,
+                                    no:                 pageNumber,
+                                    date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
+                                    time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                    authorName:         data.BookShelf.c_Author,
+                                    bookName:           data.BookShelf.c_BookName,
+                                    yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月"                                    
                                 })
                                 continue;
                             }
@@ -347,7 +347,12 @@ jQuery(document).ready(function() {
                                 101  :  "乱舞", 
                                 102  :  "献吻", 
                                 103  :  "左太极",
-                                104  :  "右太极"
+                                104  :  "右太极",
+                                105  :  "捂脸",
+                                106  :  "奸笑",
+                                107  :  "耶",
+                                108  :  "机智",
+                                109  :  "嘿哈"
                             }
                         }]
                     });
