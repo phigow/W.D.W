@@ -65,7 +65,7 @@ jQuery(document).ready(function() {
                         $('#para_author*').html(data.BookShelf.c_Author);  
                         $('#para_bookName*').html(data.BookShelf.c_BookName);  
                         $('#para_from').html("<br>"+data.bookDataOfPage_List[0].c_MessageDate.split('T')[0]);  
-                        $('#para_to').html("<br>"+data.bookDataOfPage_List[i].c_MessageDate.split('T')[0]); 
+                        $('#para_to').html("<br>"+data.bookDataOfPage_List[data.bookDataOfPage_List.length - 1].c_MessageDate.split('T')[0]); 
                         var Simage=_.template($('#images').html());
                         var Dimage=_.template($('#double_images').html());
                         var Ximage=_.template($('#image_template').html());
@@ -122,7 +122,7 @@ jQuery(document).ready(function() {
                         })
                         */
                     var hwRatio = 329.8;
-                    var maxHeight = 657;
+                    var maxHeight = 580;
                     var widthPercent = 85;
                     var pages="";
                     var pageNumber =0;
@@ -140,13 +140,16 @@ jQuery(document).ready(function() {
                         pageNumber ++;
                         var images="";
                         var imageHeight = 0;
+                        if(data.bookDataOfPage_List[i].ImgData_List.length == 0){ //Pure Content
+                            console.log(pageNumber);
+                        }
                         for (var j = 0; j < data.bookDataOfPage_List[i].ImgData_List.length; j+=2) {
                             //imgsrc ="";
                             var imgsrc1 = (data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl.indexOf("qpic.cn/mm")>0?"http://120.77.245.158:8088/api/ApiTools/GetPictureByUrl?_Url=":"")+data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl;
                             var w1 = data.bookDataOfPage_List[i].ImgData_List[j].c_Width;
                             var h1 = data.bookDataOfPage_List[i].ImgData_List[j].c_Height;
                             surroundBool = 1;
-                            if((data.bookDataOfPage_List[i].ImgData_List.length==1||j==data.bookDataOfPage_List[i].ImgData_List.length-1)&&(data.bookDataOfPage_List[i].c_Content.length > 100 || h1/w1 > 410/240)){
+                            if((data.bookDataOfPage_List[i].ImgData_List.length==1||j==data.bookDataOfPage_List[i].ImgData_List.length-1)&&(w1/h1<1)&&(data.bookDataOfPage_List[i].c_Content.length > 100 || h1/w1 > 410/240)){
                                 surroundBool = 0;
                                 pages += Spage({
                                     img:                imgsrc1,
@@ -162,7 +165,7 @@ jQuery(document).ready(function() {
                                 continue;
                             }
                             //console.log(h1);
-                            if(j+1 < data.bookDataOfPage_List[i].ImgData_List.length){
+                            if(j+1 < data.bookDataOfPage_List[i].ImgData_List.length){ //Have Even Pics
                                 var imgsrc2 = (data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl.indexOf("qpic.cn/mm")>0?"http://120.77.245.158:8088/api/ApiTools/GetPictureByUrl?_Url=":"")+data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl;
                                 var w2 = data.bookDataOfPage_List[i].ImgData_List[j+1].c_Width;
                                 var h2 = data.bookDataOfPage_List[i].ImgData_List[j+1].c_Height;
@@ -185,7 +188,7 @@ jQuery(document).ready(function() {
                                     pageNumber ++;
                                 }
                             }
-                            else{
+                            else{ //Only Odd Pic
                                 imgsrc2 = "#";
                                 widthA = widthPercent;
                                 widthB = "0%;display:none;height:0";
@@ -217,18 +220,57 @@ jQuery(document).ready(function() {
                             //console.log(imageHeight);
                         };
                         if(surroundBool) {
-                        pages += page(
-                        {
-                            no:                 pageNumber,
-                            date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
-                            time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
-                            img:                images,
-                            content:            data.bookDataOfPage_List[i].c_Content,
-                            authorName:         data.BookShelf.c_Author,
-                            bookName:           data.BookShelf.c_BookName,
-                            yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月" 
-                        })
-                    }
+                            var subContent = data.bookDataOfPage_List[i].c_Content;
+                            if(imageHeight + subContent.length / 17 * 28 > maxHeight) { // Long Content
+                                console.log(data.bookDataOfPage_List[i].c_Content.length);
+                                console.log(parseInt((maxHeight-imageHeight)/28*17));
+                                console.log(pageNumber);
+                                var content_this = subContent.substring(0,parseInt((maxHeight-imageHeight)/28)*17-15);
+                                subContent = subContent.substring(parseInt((maxHeight-imageHeight)/28)*17-15);
+                                pages += page(
+                                {
+                                    no:                 pageNumber,
+                                    date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
+                                    time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                    img:                images,
+                                    content:            content_this,
+                                    authorName:         data.BookShelf.c_Author,
+                                    bookName:           data.BookShelf.c_BookName,
+                                    yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月" 
+                                })
+                                pageNumber ++;
+                                imageHeight = 0;
+                                while(subContent.length > 0){
+                                    content_this = subContent.substring(0,parseInt((maxHeight-imageHeight)/28)*17-14);
+                                    subContent = subContent.substring(parseInt((maxHeight-imageHeight)/28)*17-14);
+                                    pages += page(
+                                    {
+                                        no:                 pageNumber,
+                                        date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
+                                        time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                        img:                null,
+                                        content:            content_this,
+                                        authorName:         data.BookShelf.c_Author,
+                                        bookName:           data.BookShelf.c_BookName,
+                                        yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月" 
+                                    })
+                                    pageNumber ++;
+                                }
+                            }
+                            else{ // Normal Content
+                                pages += page(
+                                {
+                                    no:                 pageNumber,
+                                    date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
+                                    time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                    img:                images,
+                                    content:            data.bookDataOfPage_List[i].c_Content,
+                                    authorName:         data.BookShelf.c_Author,
+                                    bookName:           data.BookShelf.c_BookName,
+                                    yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月" 
+                                })
+                            }
+                        }
                         if(imageHeight>maxHeight){
                         console.log(data.bookDataOfPage_List[i].c_Content)
                         console.log(imageHeight);}
@@ -279,7 +321,7 @@ jQuery(document).ready(function() {
                                 33   :  "嘘", 
                                 34   :  "晕", 
                                 35   :  "疯了", 
-                                36   :  "哀", 
+                                36   :  "衰", 
                                 37   :  "骷髅", 
                                 38   :  "敲打", 
                                 39   :  "再见", 
@@ -352,7 +394,10 @@ jQuery(document).ready(function() {
                                 106  :  "奸笑",
                                 107  :  "耶",
                                 108  :  "机智",
-                                109  :  "嘿哈"
+                                109  :  "嘿哈",
+                                110  :  "皱眉",
+                                111  :  "蜡烛",
+                                112  :  "红包"
                             }
                         }]
                     });
