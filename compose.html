@@ -65,7 +65,7 @@
         .book-name {
             position: absolute;
             z-index: 1;
-            top: 520px;
+            top: 580px;
             font-size: 55px;
             font-weight: bold;
             text-align: center;
@@ -75,11 +75,10 @@
         .author {
            position: absolute;
             z-index: 1;
-            top: 570px;
+            top: 700px;
             font-size: 23px;
             font-style: italic;    
             text-align: center;
-            width: 100%;     
         }
     </style>
     <!--[if IE]>
@@ -94,7 +93,7 @@
                         <!--封面页-->
                         <li class="page cover swipeout" book="vm.book" parse-emoji=".author, .title">                                    
                             <div class="book-name">{bookName}</div>
-                            <div class="author">{author}</div>
+                            <div class="author" style="width:100%">{author}</div>
                             <cover book="book" pic="book.cover.pic" size="560" editable="book.editable &amp;&amp; book.cover.editable"
                             class="loaded" style='display:none'>
                                 <ng-transclude>
@@ -106,7 +105,7 @@
 
                                         <div class="swipeout-actions-right">
                                             <a href="#" class="swipeout-delete">
-                                                Delete
+                                                
                                             </a>
                                         </div>
                         </li>
@@ -282,7 +281,7 @@
                         ng-switch="!book.finalized &amp;&amp; book.auth === 'edit'" book="vm.book">
                             <!---->
                             <!---->
-                            <img src="assets/images/preface.png" style="left: 270px; position:absolute; top: -10px">
+                            <img src="assets/images/preface.png" style="left: 270px; position:absolute; top: -10px; background: transparent; border: none;">
                             <div class="content-container" ng-switch-when="false" parse-emoji="">
                                 <p class="content" style="margin-bottom:1.5em">
             人生走过漫长的岁月。
@@ -375,7 +374,7 @@
             <text class="time" id="para_time" fill="#fff" style="font-size:18px;position:relative;top:22px"><%=time%></text><!--Parameter_Time-->
         </div>
         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="margin-left:-22px">
-            <img id="para_img" class="stamp xgallerify" style="float:left;width:60%;" src="<%=img%>"><span id="stamp_content"><%=content%></span></div>
+            <img id="para_img" class="stamp frame_pic xgallerify" style="float:left;width:60%;" src="<%=img%>"><span id="stamp_content"><%=content%></span></div>
         </div>
         <footer>
             <hr>
@@ -403,8 +402,8 @@
 </script>
 
 <script type="text/template" id="image_template">
-    <img src=<%=imgA%> style="width:<%=widthA%>%;margin:2px">
-    <img src=<%=imgB%> style="width:<%=widthB%>%;margin:2px">
+    <img src=<%=imgA%> class="frame_pic" style="width:<%=widthA%>%;margin:2px">
+    <img src=<%=imgB%> class="frame_pic" style="width:<%=widthB%>%;margin:2px">
 </script>
 <script type="text/template" id="gallerify">
         <img class="list-img" src=<%=img%>>
