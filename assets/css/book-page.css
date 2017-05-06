@@ -17,9 +17,7 @@ Version      : 1.0
 }
 
 img,legend {
-	background: #fff;
-    border: solid 1px #ccc;
-    padding: 4px;
+	border: 0
 }
 
 legend,ul {
@@ -11224,7 +11222,7 @@ nav.home .navigation a {
 	height: 210mm;
 	font-size: 14px;
 	font-family: "Times New Roman",Times,"SongTi SC",FZShuSong-Z01,FZShuSong,Simsun,"Apple Color Emoji","Segoe UI Emoji",NotoColorEmoji,"Segoe UI Symbol","Android Emoji",EmojiSymbols,serif;
-	padding-top: 42px;
+	padding-top: 20mm;
 	padding-bottom: 52px;
 	background-color: #fff;
 	margin: 0 5px 14px;
@@ -11333,9 +11331,10 @@ nav.home .navigation a {
 }
 
 #page.A5-1 .page footer,#page.A5-2 .page footer {
+	z-index: 100;
 	position: absolute;
 	bottom: 0;
-	width: 100%;
+	width: 92%;
 	padding-left: 12.0875mm;
 	padding-right: 12.0875mm;
 	font-size: 14px;
@@ -11347,7 +11346,8 @@ nav.home .navigation a {
 #page.A5-1 .page footer hr,#page.A5-2 .page footer hr {
 	border-style: solid;
 	border-bottom: none;
-	border-color: #ddd;
+	border-color: #666;
+    border-width: medium;
 	margin: 0
 }
 
@@ -11377,10 +11377,14 @@ nav.home .navigation a {
 #page.A5-1 .page footer .pagination,#page.A5-2 .page footer .pagination {
 	position: static;
 	width: auto;
+	float: right
+}
+
+#page.A5-1 .page:nth-child(odd) footer .pagination,#page.A5-2 .page:nth-child(odd) footer .pagination {
 	float: left
 }
 
-#page.A5-1 .page:nth-child(odd) footer .book-title,#page.A5-1 .page:nth-child(odd) footer .pagination,#page.A5-2 .page:nth-child(odd) footer .book-title,#page.A5-2 .page:nth-child(odd) footer .pagination {
+#page.A5-1 .page:nth-child(odd) footer .book-title,#page.A5-2 .page:nth-child(odd) footer .book-title {
 	float: right
 }
 
@@ -13054,12 +13058,28 @@ a.label[data-grade="7"],a.label[data-grade="8"],a.label[data-grade="9"],a.label[
 	line-height: 28px;
 	margin-left: -25px;
 	margin-right: 25px;
-	text-align: justify
+	text-align: justify;
+	font-family: "楷体","楷体_GB2312"; 
 }
 
 #stamp_content {
 	font-size: 1.5em;
 	line-height: 28px;
 	margin-right: 25px;
-	text-align: justify
+	text-align: justify;
+	font-family: "楷体","楷体_GB2312"; 
+}
+
+.frame_pic {
+	background: #fff;
+    border: solid 1px #ccc;
+    padding: 4px;
+}
+
+#page_lists .page:nth-child(odd) {
+	padding-right: 10mm
+}
+
+#page_lists .page:nth-child(even) {
+	padding-left: 10mm
 }
