@@ -26,6 +26,47 @@ function timeStamp2String (time){
          var mseconds = datetime.getMilliseconds();
          return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;
 };
+function countLine (str,width){
+    var count = 0;
+    var lines = str.split("<br>");
+    for (var i = lines.length - 1; i >= 0; i--) {
+        if(lines[i].length == 0){
+            count ++;
+        }
+        count += Math.ceil(lines[i].length/width);
+    };
+    return count;
+};
+function cutContent (str, line, width){
+    var content = "";
+    var lines = str.split("<br>");
+    for (var i = line, j = 0; i > 0 && j < lines.length; ){
+        if(lines[j].length < width){
+            content += lines[j] + "<br>";
+            i --;
+            j ++;
+        }
+        else{
+            contentHead = lines[j].substring(0,width);
+            contentTail = lines[j].substring(width);
+            i --;
+            if(lines[j].length < width){
+                content += lines[j] + "<br>";
+                lines[j] = "";
+                j ++;
+            }
+            else{
+                lines[j] = contentTail;
+                content += contentHead;
+            }
+        }
+    };
+    return content;
+};
+function restContent (str, sub){
+    var rest = str.substring(sub.length);
+    return rest;
+};
 jQuery(document).ready(function() {
         var id = (window.location.hash).split('#')[1];
         var template = _.template($('#list_template').html());
@@ -64,8 +105,8 @@ jQuery(document).ready(function() {
                         */
                         $('#para_author*').html(data.BookShelf.c_Author);  
                         $('#para_bookName*').html(data.BookShelf.c_BookName);  
-                        $('#para_from').html("<br>"+data.bookDataOfPage_List[0].c_MessageDate.split('T')[0]);  
-                        $('#para_to').html("<br>"+data.bookDataOfPage_List[data.bookDataOfPage_List.length - 1].c_MessageDate.split('T')[0]); 
+                        $('#para_from').html("<br>"+data.bookDataOfPage_List[0].c_MessageDate.split(' ')[0]);  
+                        $('#para_to').html("<br>"+data.bookDataOfPage_List[data.bookDataOfPage_List.length - 1].c_MessageDate.split(' ')[0]); 
                         var Simage=_.template($('#images').html());
                         var Dimage=_.template($('#double_images').html());
                         var Ximage=_.template($('#image_template').html());
@@ -124,16 +165,17 @@ jQuery(document).ready(function() {
                     var hwRatio = 329.8;
                     var maxHeight = 580;
                     var widthPercent = 85;
+                    var wordWidth = 17;
                     var pages="";
                     var pageNumber =0;
                     var surroundBool = 1;
                     for (var i = 0; i < data.bookDataOfPage_List.length; i++) {
                         /*月页*/
-                        if(i==0 || data.bookDataOfPage_List[i].c_MessageDate.split('T')[0].split('-')[1] != data.bookDataOfPage_List[i-1].c_MessageDate.split('T')[0].split('-')[1]){
+                        if(i==0 || data.bookDataOfPage_List[i].c_MessageDate.split(' ')[0].split('-')[1] != data.bookDataOfPage_List[i-1].c_MessageDate.split(' ')[0].split('-')[1]){
                             pages += month(
                             {
-                                year:           data.bookDataOfPage_List[i].c_MessageDate.split('T')[0].split('-')[0],
-                                month:          data.bookDataOfPage_List[i].c_MessageDate.split('T')[0].split('-')[1]
+                                year:           data.bookDataOfPage_List[i].c_MessageDate.split(' ')[0].split('-')[0],
+                                month:          data.bookDataOfPage_List[i].c_MessageDate.split(' ')[0].split('-')[1]
                             })
                             pageNumber ++;
                         }
@@ -156,11 +198,11 @@ jQuery(document).ready(function() {
                                     width:              widthPercent/2,                                    
                                     content:            data.bookDataOfPage_List[i].c_Content,
                                     no:                 pageNumber,
-                                    date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
-                                    time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                    date:               data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[2],
+                                    time:               data.bookDataOfPage_List[i].c_MessageDate.split(" ")[1],
                                     authorName:         data.BookShelf.c_Author,
                                     bookName:           data.BookShelf.c_BookName,
-                                    yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月"                                    
+                                    yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[1] + "月"                                    
                                 })
                                 continue;
                             }
@@ -176,13 +218,13 @@ jQuery(document).ready(function() {
                                     pages += page(
                                     {
                                         no:                 pageNumber,
-                                        date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
-                                        time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                        date:               data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[2],
+                                        time:               data.bookDataOfPage_List[i].c_MessageDate.split(" ")[1],
                                         img:                images,
                                         content:            null,
                                         authorName:         data.BookShelf.c_Author,
                                         bookName:           data.BookShelf.c_BookName,
-                                        yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月"                                    })
+                                        yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[1] + "月"                                    })
                                     images="";
                                     imageHeight = 0;
                                     pageNumber ++;
@@ -197,13 +239,13 @@ jQuery(document).ready(function() {
                                     pages += page(
                                     {
                                         no:                 pageNumber,
-                                        date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
-                                        time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                        date:               data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[2],
+                                        time:               data.bookDataOfPage_List[i].c_MessageDate.split(" ")[1],
                                         img:                images,
                                         content:            null,
                                         authorName:         data.BookShelf.c_Author,
                                         bookName:           data.BookShelf.c_BookName,
-                                        yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月" 
+                                        yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[1] + "月" 
                                     })
                                     images="";
                                     imageHeight = 0;
@@ -219,40 +261,40 @@ jQuery(document).ready(function() {
                             })
                             //console.log(imageHeight);
                         };
-                        if(surroundBool) {
+                        if(surroundBool) { //not surround
                             var subContent = data.bookDataOfPage_List[i].c_Content;
-                            if(imageHeight + subContent.length / 17 * 28 > maxHeight) { // Long Content
-                                console.log(data.bookDataOfPage_List[i].c_Content.length);
-                                console.log(parseInt((maxHeight-imageHeight)/28*17));
-                                console.log(pageNumber);
-                                var content_this = subContent.substring(0,parseInt((maxHeight-imageHeight)/28)*17-15);
-                                subContent = subContent.substring(parseInt((maxHeight-imageHeight)/28)*17-15);
+                            var lines = countLine(subContent, wordWidth);
+                            if(imageHeight + lines * 28 > maxHeight) { // Long Content
+                                var restLine = parseInt((maxHeight - imageHeight) / 28);
+                                var content_this = cutContent(subContent, restLine, wordWidth);// subContent.substring(0,parseInt((maxHeight-imageHeight)/28)*17-15);
+                                subContent = restContent(subContent, content_this);// subContent.substring(parseInt((maxHeight-imageHeight)/28)*17-15);
                                 pages += page(
                                 {
                                     no:                 pageNumber,
-                                    date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
-                                    time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                    date:               data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[2],
+                                    time:               data.bookDataOfPage_List[i].c_MessageDate.split(" ")[1],
                                     img:                images,
                                     content:            content_this,
                                     authorName:         data.BookShelf.c_Author,
                                     bookName:           data.BookShelf.c_BookName,
-                                    yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月" 
+                                    yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[1] + "月" 
                                 })
                                 pageNumber ++;
                                 imageHeight = 0;
                                 while(subContent.length > 0){
-                                    content_this = subContent.substring(0,parseInt((maxHeight-imageHeight)/28)*17-14);
-                                    subContent = subContent.substring(parseInt((maxHeight-imageHeight)/28)*17-14);
+                                    var restLine = parseInt(maxHeight / 28);
+                                    content_this = cutContent(subContent, restLine, wordWidth);//subContent.substring(0,parseInt((maxHeight-imageHeight)/28)*17-14);
+                                    subContent = subContent = restContent(subContent, content_this);//subContent.substring(parseInt((maxHeight-imageHeight)/28)*17-14);
                                     pages += page(
                                     {
                                         no:                 pageNumber,
-                                        date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
-                                        time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                        date:               data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[2],
+                                        time:               data.bookDataOfPage_List[i].c_MessageDate.split(" ")[1],
                                         img:                null,
                                         content:            content_this,
                                         authorName:         data.BookShelf.c_Author,
                                         bookName:           data.BookShelf.c_BookName,
-                                        yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月" 
+                                        yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[1] + "月" 
                                     })
                                     pageNumber ++;
                                 }
@@ -261,13 +303,13 @@ jQuery(document).ready(function() {
                                 pages += page(
                                 {
                                     no:                 pageNumber,
-                                    date:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[2],
-                                    time:               data.bookDataOfPage_List[i].c_MessageDate.split("T")[1],
+                                    date:               data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[2],
+                                    time:               data.bookDataOfPage_List[i].c_MessageDate.split(" ")[1],
                                     img:                images,
                                     content:            data.bookDataOfPage_List[i].c_Content,
                                     authorName:         data.BookShelf.c_Author,
                                     bookName:           data.BookShelf.c_BookName,
-                                    yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split("T")[0].split("-")[1] + "月" 
+                                    yyyymm:             data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[0] + "年" + data.bookDataOfPage_List[i].c_MessageDate.split(" ")[0].split("-")[1] + "月" 
                                 })
                             }
                         }
