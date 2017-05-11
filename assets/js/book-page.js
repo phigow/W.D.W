@@ -77,7 +77,7 @@ jQuery(document).ready(function() {
                 success: function(data) {
                     //console.log(data);
                     $(document).attr("title",data.BookShelf.c_BookName);
-                    $("#cover").attr("src","/assets/images/cover/" + data.BookShelf.c_CoverImage);
+                    $("#cover").attr("src","http://120.77.245.158:8088/api/Book/GetCoverImageByPath?BookName=" + data.BookShelf.c_BookName + "&Author=" + data.BookShelf.c_Author);
                     $(".book-name").html(data.BookShelf.c_BookName);
                     $(".author").html(data.BookShelf.c_Author + "·著");
                     options="";
@@ -107,6 +107,7 @@ jQuery(document).ready(function() {
                         $('#para_bookName*').html(data.BookShelf.c_BookName);  
                         $('#para_from').html("<br>"+data.bookDataOfPage_List[0].c_MessageDate.split(' ')[0]);  
                         $('#para_to').html("<br>"+data.bookDataOfPage_List[data.bookDataOfPage_List.length - 1].c_MessageDate.split(' ')[0]); 
+                        $('#para_id').html(data.BookShelf.c_ShelfCode); //only use for topdf page
                         var Simage=_.template($('#images').html());
                         var Dimage=_.template($('#double_images').html());
                         var Ximage=_.template($('#image_template').html());

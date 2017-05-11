@@ -65,11 +65,12 @@
         .book-name {
             position: absolute;
             z-index: 1;
-            top: 580px;
+            top: 550px;
             font-size: 55px;
             font-weight: bold;
             text-align: center;
             width: 100%;
+            line-height: 57px;
         }
 
         .author {
@@ -92,15 +93,15 @@
                     <ul class="pages" id="page_lists">
                         <!--封面页-->
                         <li class="page cover swipeout" book="vm.book" parse-emoji=".author, .title">                                    
-                            <div class="book-name">{bookName}</div>
-                            <div class="author" style="width:100%">{author}</div>
+                            <div class="book-name" style="display:none">{bookName}</div>
+                            <div class="author" style="display:none; width:100%">{author}</div>
                             <cover book="book" pic="book.cover.pic" size="560" editable="book.editable &amp;&amp; book.cover.editable"
                             class="loaded" style='display:none'>
                                 <ng-transclude>
                                     <!---->
                                 </ng-transclude>
                             </cover>
-                            <img id="cover" src="assets/images/cover/add.jpg" style="top: 90px; left: 80px; width: 400px; height: 400px; position: absolute; border-radius: 200px;">
+                            <img id="cover" src="assets/images/cover/add.jpg" style="width:100%">
                             <div style="align-text:center; font-size:100px; positon:absolute; top:150px" id="title"></div>
 
                                         <div class="swipeout-actions-right">
