@@ -13083,3 +13083,10 @@ a.label[data-grade="7"],a.label[data-grade="8"],a.label[data-grade="9"],a.label[
 #page_lists .page:nth-child(even) {
 	padding-left: 10mm
 }
+
+.toBeContinue {
+	width: 60%;
+    position: absolute;
+    right: 30px;
+    bottom: 80px;
+}

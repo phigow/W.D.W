@@ -138,13 +138,13 @@
                                 我的我&middot;微信书,wodemy.com, 2017.3
                             </p>
                             <p>
-                                XINSHU-XXXXX-290450
+                                WODEWO-MY-201705
                             </p>
                             <p>
-                                I.①<span id="para_bookName">{bookName}</span><!-- Parameter_bookNamer -->; II. ① <span id="para_author">{author}</span><!-- Parameter_Author --> ; III. ①文学随笔，语录-微信书-中国-现代; IV. ①NO.290450
+                                I.①<span id="para_bookName">{bookName}</span><!-- Parameter_bookNamer -->; II. ① <span id="para_author">{author}</span><!-- Parameter_Author --> ; III. ①文学随笔，语录-微信书-中国-现代; IV. ①NO.201705
                             </p>
                             <p>
-                                我的我&middot;微信书荣誉出版 (2017)290450号
+                                我的我&middot;微信书荣誉出版 201705号
                             </p>
                             <p>
                                 著作权归原作者所有
@@ -154,6 +154,9 @@
                                 be reproduced or used in any form or by any means without permission of
                                 the author.
                             </p>
+                            <br>
+                            <br>
+                            <br>
                             <p>
                                 <b>
                                     <span id="para_bookName">{bookName}</span><!-- Parameter_bookNamer -->
@@ -385,6 +388,29 @@
         </footer>
     </li>
 </script>
+<script type="text/template" id="longpic_page_template">
+    <li class="page content row" book="vm.book" page-data="page" parse-emoji=".book-title" ng-repeat="page in vm.book.pages | limitTo: vm.limit track by $index">
+        <button title="Close (Esc)" type="button" class="mfp-close" style="display:none; position: absolute;z-index: 1;right: 10px; width:30px; height: 30px; background:url(assets/images/delete.png)"></button>
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <text class="date" id="para_date" style="font-size:80px; color:#309;text-decoration: underline;font-style: italic; position:relative; top:15px"><%=date%></text><!--Parameter_Date-->
+            <br style="height:100px">
+            <text class="time" id="para_time" fill="#fff" style="font-size:18px;position:relative;top:22px"><%=time%></text><!--Parameter_Time-->
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-left:-22px">
+            <img id="para_img" class="stamp frame_pic xgallerify" style="width:224px;position:absolute;left:20px;clip:rect(0px 224px 587px 0px)" src="<%=img%>">
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="margin-left:-22px">
+            <span id="stamp_content"><%=content%></span>
+        </div>
+
+        <footer>
+            <hr>
+            <div class="pagination"><%=no%></div>
+            <div class="book-title"><%=bookName%></div>
+            <div class="date"><%=yyyymm%></div>
+        </footer>
+    </li>
+</script>
 
 <script type="text/template" id="images">
     <p>
@@ -431,6 +457,11 @@
         </div>
     </div>
 </li>
+</script>
+<script type="text/template" id="last_template">
+    <li class="page last-page">
+        <img src="assets/images/continue.png" class = "toBeContinue">
+    </li>
 </script>
 <script type="text/javascript">
     
