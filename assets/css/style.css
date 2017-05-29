@@ -193,7 +193,7 @@ fieldset {
 .welcome-image-area {
     position: relative;
     height: 100%;
-    background: url(../images/bg/bg.jpg);
+    background: url(../images/bg/bg.png);
     background-size: cover;
     z-index: 1;
 }
@@ -205,7 +205,7 @@ fieldset {
 
 .welcome-image-area:after {
     position: absolute;
-    background: rgba(0, 0, 0, .8);
+    background: rgba(0, 0, 0, .1);
     left: 0;
     top: 0;
     width: 100%;
@@ -229,7 +229,7 @@ fieldset {
     color: #fff;
     font-size: 60px;
     letter-spacing: 5px;
-    margin: 0;
+    margin-top: 90px;
     font-weight: 900;
     text-transform: uppercase;
 }
@@ -251,7 +251,7 @@ fieldset {
 }
 
 .logo img {
-    width: 20px;
+    width: 32px;
 }
 
 .logo a {
@@ -295,7 +295,7 @@ fieldset {
 .menu-bg {
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
-    background: #faf6ea;
+    background: #4a4c4f;
 }
 
 .menu-bg .logo {
@@ -306,18 +306,18 @@ fieldset {
 }
 
 .menu-bg a{
-    color: #222;
+    color: #fff;
 }
 
 .menu-bg .mainmenu .navbar-nav li a {
-    color: #222;
+    color: #fff;
     padding: 20px 15px;
     -webkit-transition: .3s;
     transition: .3s;
 }
 
 .menu-bg .mainmenu .navbar-nav li a:hover {
-    color: #000;
+    color: #fff;
 }
 
 
@@ -386,9 +386,10 @@ fieldset {
 */
 
 .service-area {
-    background: #000;
+    background: #7db1ff;
     padding-top: 30px;
     padding-bottom: 60px;
+    color: #fff;
 }
 
 .single-service {
@@ -707,4 +708,69 @@ ul.work li.active {
 
 .footer-social-link ul li a .ins {
     color: #2D6B94;
+}
+
+/*ADDED*/
+.index-middle {
+    margin-top: 30px
+}
+
+.title {
+    font-size: 36px;
+    text-align: center;
+    margin:10px
+}
+
+.content {
+    font-style: italic
+}
+
+.index-doc-img {
+    position: absolute;
+    top: 700px;
+}
+
+.index-doc-img img{
+    width: 18%;
+}
+
+.index-doc-img span{
+    text-align: center
+}
+
+.step1 {
+    margin: 0px;  
+}
+
+.step2 {
+    margin: 0px;  
+}
+
+.step3 {
+    margin: 0px;  
+}
+
+.step4 {
+    margin: 0px;  
+}
+
+.step5 {
+    margin: 0px;  
+}
+
+.wow > a > img {
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    height: 90px;
+    width: 90px;
+    padding: 16px
+}
+
+.sub-title{
+    text-align: center;
+    margin-bottom: 20px
+}
+
+.wow h3{
+    margin-left: 19px
 }

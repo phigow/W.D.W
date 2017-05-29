@@ -1,0 +1,479 @@
+
+        <div class="header-top-area" style="height:58px ;   position: fixed;left: 0;top: 0;width: 100%;z-index: 9999;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <!-- START LOGO DESIGN AREA -->
+                        <div class="logo">
+                            <span>
+                                <img src="assets/images/logo.png"/>
+                            </span>
+                            <span>
+                                <a href="index.html">我的我</a>
+                        </div>
+                        <!-- END LOGO DESIGN AREA -->
+                    </div>
+                    <div class="col-sm-9">
+                        <!-- START MENU DESIGN AREA -->
+                        <div class="mainmenu">
+                            <div class="navbar navbar-nobg">
+                                <div class="navbar-collapse collapse">
+                                    <ul class="nav navbar-nav navbar-right">
+                                        <li class="active"><a href="#" id="register">注册 <div class="ripple-wrapper"></div></a>
+                                        </li>                                        
+                                        <li><a href="javascript:showDialog()" class="current" id="login">登录</a>
+                                        </li>                                        
+                                        <li><a onclick="logout()" class="current" id="logout" style="display:none">退出</a>
+                                        </li>                                        
+                                        <li><a href="bookshelf.shtml" class="current" id="userName" style="display:none">userid</a>
+                                        </li>
+                                        <li><a href="javascript:showDialog()" class="current">我的书架</a>
+                                        </li>
+                                        <li><a class="smoth-scroll" href="pay.html">我要代理</a>
+                                        </li>
+                                        <li><a href="javascript:showDialog()" class="current">在线客服</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END MENU DESIGN AREA -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui-mask" id="mask" onselectstart="return false"></div>
+        <div class="ui-dialog" id="dialogMove" onselectstart='return false;'>
+            <div class="ui-dialog-title" id="dialogDrag"  onselectstart="return false;" >
+                登录开启私人订制之路
+                <a class="ui-dialog-closebutton" href="javascript:hideDialog();"></a>
+            </div>
+            <div class="ui-dialog-content">
+                <div class="con_right ">
+                <div class="con_r_top"><a href="javascript:;" class="left" style="color: rgb(153, 153, 153); border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: rgb(46, 85, 142);">扫码登录</a> <a href="javascript:;" class="right" style="color: rgb(51, 51, 51); border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: rgb(222, 222, 222);">账号密码登录</a></div>
+                <ul>
+                    <li class="con_r_left" style="display: block;">
+                        <div class="erweima">
+                            <div class="qrcode">
+                                <div id="output" style="width: 100%; position: relative">
+                                    <img src="../assets/images/wx_wdw.jpg" style="width: 174px; height: 174px">
+                                </div>                                    
+                            </div>
+                        </div>
+                        <div style="height: 70px">
+                            <p>使用微信扫码登陆</p>
+                        </div>
+                    </li>
+                    
+                    
+                    <li class="con_r_right" style="display: none;">
+                        <div class="user">
+                            <div>
+                                <span class="user-icon"></span>
+                                <input type="text" id="userid" name="userid" placeholder="　输入账号" value="">
+                            </div>
+
+                            <div>
+                                <span class="mima-icon"></span>
+                                <input type="password" id="pwd" name="pwd" placeholder="　输入密码" value="">
+                            </div>                      
+                        </div>    
+                        <div class="ui-dialog-l40" id="login_tip"></div>                  
+                        <br>
+                        <div>
+                            <a class="ui-dialog-submit" id="btn_Login" >登录</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+    
+        <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="width:1349px;height:1444px;background-color:rgba(0,0,0,0.5);position:fixed;top:0;left:0;z-index:9999;">
+        <div class="content">
+            <div class="con_left"></div>
+            <div class="con_right ">
+                <div class="con_r_top"><a href="javascript:;" class="left" style="color: rgb(153, 153, 153); border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: rgb(46, 85, 142);">扫码登录</a> <a href="javascript:;" class="right" style="color: rgb(51, 51, 51); border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: rgb(222, 222, 222);">账号密码登录</a></div>
+                <ul>
+                    <li class="con_r_left" style="display: block;">
+                        <div class="erweima">
+                            <div class="qrcode">
+                                <div id="output" style="width: 100%; position: relative">
+                                    <img src="../assets/images/wx_wdw.jpg" style="width: 174px; height: 174px">
+                                </div>                                    
+                            </div>
+                        </div>
+                        <div style="height: 70px">
+                            <p>使用微信扫码登陆</p>
+                        </div>
+                    </li>
+                    
+                    
+                    <li class="con_r_right" style="display: none;">
+                        <div class="user">
+                            <div>
+                                <span class="user-icon"></span>
+                                <input type="text" id="userid" name="userid" placeholder="　输入账号" value="">
+                            </div>
+
+                            <div>
+                                <span class="mima-icon"></span>
+                                <input type="password" id="pwd" name="pwd" placeholder="　输入密码" value="">
+                            </div>                      
+                        </div>                      
+                        <br>
+                        <button id="btn_Login" type="submit">登 录</button>
+                    </li>
+                </ul>
+            </div>
+            </div>
+        </div>
+        <style type="text/css">
+        .menu-bg {
+            -webkit-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+            background: #4a4c4f;
+        }
+
+        .menu-bg .logo {
+            color: #222;
+            padding-top: 18px;
+            -webkit-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+        }
+
+        .menu-bg a{
+            color: #fff;
+        }
+
+        .menu-bg .mainmenu .navbar-nav li a {
+            color: #fff;
+            padding: 20px 15px;
+            -webkit-transition: .3s;
+            transition: .3s;
+        }
+
+        .menu-bg .mainmenu .navbar-nav li a:hover {
+            color: #fff;
+        }
+
+        /*
+        Login 相关
+        */
+        a, body, button, dd, div, dl, dt, h1, h2, h3, h4, h5, h6, input, li, ol, p, td, textarea, ul { margin: 0; padding: 0; }
+        body, button, input, select, textarea { font: 9pt/1.5 tahoma,arial,Hiragino Sans GB,\5b8b\4f53,sans-serif; }
+        button, h1, h2, h3, h4, h5, h6, input, select, textarea { font-size: /*100%*/; }
+        ol, ul { list-style: none; }
+        a { color: #666; text-decoration: none; }
+        a:hover { color: #043559; text-decoration: underline; }
+        body { background: #fff; font-size: 9pt; font-family: \\5FAE\8F6F\96C5\9ED1,Tahoma,Geneva,sans-serif; min-width: 750pt; }
+        img { border: 0; vertical-align: top; }
+        textarea { resize: none; }
+        a, button, input, select, textarea { outline: 0; }
+        a, button { cursor: pointer; }
+        button { border: none; }
+        .pagewrap { background: url(../img/95.jpg) top center no-repeat; }
+        .main { position: relative; margin: 0 auto; width: 990px; height: 900px;}
+        .header { padding: 13px 0 0; height: 67px; }
+        .header h1 a { display: block; }
+        { overflow: hidden; }
+        .con_left { float: left; padding: 75pt 0 0 230px; width: 35%; }
+        .con_left p { padding: 0 0 3px; width: 10pc; color: #040000; font-size: 1pc; font-family: "微软雅黑"; }
+        .con_left a { padding: 0 0 0 2pc; color: #2f548e; text-decoration: underline; font-size: 1pc; font-family: "微软雅黑"; }
+        .con_right { float: left; width: 28pc; height: 398px; border: 1px solid #dedede; background: #fff; }
+        .con_right .con_r_top { padding: 0 0 0 39px; /*width: 409px; */height: 110px; }
+        .con_right .con_r_top .left, .con_right .con_r_top .right { float: left; padding: 35px 0 0; width: 186px; height: 35px; text-align: center; text-decoration: none; font-size: 18px; font-family: "微软雅黑"; }
+        .con_right .con_r_top .left { border-bottom: 2px solid #dedede; color: #999; }
+        .con_right .con_r_top .right { border-bottom: 2px solid #2e558e; color: #333; }
+        .con_right ul .con_r_left .erweima { text-align: center; }
+        .con_right ul .con_r_left p { padding: 24px 0 0 135px; background: url(../img/icon.jpg) 111px 2pc no-repeat; color: #2f548e; font-size: 25px; font-family: "微软雅黑"; }
+        .con_right ul .con_r_right .user input { margin: 0 0 21px -1px; padding-left: 7px; width: 324px; height: 48px; border: 1px solid #dedede; color: #999; font-size: 14px; font-family: "微软雅黑"; line-height: 2pc; }
+        .con_right ul .con_r_right .user { padding: 0 0 0 39px; }
+        .con_right ul .con_r_right .user .user-icon { float: left; width: 36px; height: 35px; background: url(../img/user-icon.jpg) left top no-repeat; }
+        .con_right ul .con_r_right .user .mima-icon { float: left; width: 36px; height: 35px; background: url(../img/mima-icon.jpg) left top no-repeat; }
+        .con_right ul .con_r_right .user .yzmz-icon { float: left; width: 36px; height: 35px; background: url(../img/yzmz-icon.jpg) left top no-repeat; }
+        .con_right ul .con_r_right p { overflow: hidden; padding: 0 39px 37px; color: #666; font-size: 13px; font-family: "微软雅黑"; }
+        .con_right ul .con_r_right p .mima { float: left; padding-left: 5px; text-decoration: none; }
+        .con_right ul .con_r_right p .zhuce { float: right; text-decoration: none; }
+        .con_right ul .con_r_right button { margin: 0 0 0 75pt; width: 250px; height: 44px; background: #2e558e; color: #fff; font-size: 1pc; font-family: "微软雅黑"; }
+        .con_right ul .con_r_left { display: none; }
+        .con_right ul .con_r_left .erweima { position: relative; margin: 0 auto; width: 174px; height: 11pc; }
+        .qrcode { position: absolute; top: 0; left: 0; width: 174px; height: 11pc; }
+        .divimg { position: absolute; top: 50%; left: 50%; z-index: 100; overflow: hidden; margin-top: -15px; margin-left: -30px; padding: 1px; width: 60px; height: 30px; border: 1px solid #eee; border-radius: .5rem; background: #fff; opacity: .9; filter: alpha(opacity=90); -moz-opacity: .9; }
+        .con_right ul .con_r_right .user .yanzheng { width: 150px; margin: 0 5px 10px 1px; padding-left: 5px; }
+        .con_right ul .con_r_right .user .next { font-size: 12px; width: 40px; height: 33px; float: right; margin-right: 40px; }
+        .con_right .con_r_top { *height: 90px; }
+        </style>
+        <script type="text/javascript">
+        $(window).on('scroll', function () {
+            if ($(window).scrollTop() > 200) {
+                $('.header-top-area').addClass('menu-bg');
+            } else {
+                $('.header-top-area').removeClass('menu-bg');
+            }
+        });
+        </script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {    
+        if(window.sessionStorage.getItem("UserCode")){
+            $("#register").attr("style","display:none");
+            $("#login").attr("style","display:none");
+            $("#userName").attr("style","");
+            $("#userName").html(window.sessionStorage.UserName);
+            $("#logout").attr("style","");
+            console.log(window.sessionStorage);
+            }else{
+                //window.location="http://120.77.245.158/login";
+            }
+        });
+
+        function logout() {
+            $("#register").attr("style","");
+            $("#login").attr("style","");
+            $("#userName").attr("style","display:none");
+            $("#logout").attr("style","display:none");
+            sessionStorage.removeItem("UserCode");
+            sessionStorage.removeItem("UserName");
+        };
+    </script>
+
+    <script type="text/javascript">
+        var dialogInstace , onMoveStartId;  //  用于记录当前可拖拽的对象
+    
+        // var zIndex = 9000;
+
+        //  获取元素对象  
+        function g(id){return document.getElementById(id);}
+
+        //  自动居中元素（el = Element）
+        function autoCenter( el ){
+            var bodyW = document.documentElement.clientWidth;
+            var bodyH = document.documentElement.clientHeight;
+
+            var elW = el.offsetWidth;
+            var elH = el.offsetHeight;
+
+            el.style.left = (bodyW-elW)/2 + 'px';
+            el.style.top = (bodyH-elH)/2 + 'px';
+            
+        }
+
+        //  自动扩展元素到全部显示区域
+        function fillToBody( el ){
+            el.style.width  = document.documentElement.clientWidth  +'px';
+            el.style.height = document.documentElement.clientHeight + 'px';
+        }
+
+        //  Dialog实例化的方法
+        function Dialog( dragId , moveId ){
+
+            var instace = {} ;
+
+            instace.dragElement  = g(dragId);   //  允许执行 拖拽操作 的元素
+            instace.moveElement  = g(moveId);   //  拖拽操作时，移动的元素
+
+            instace.mouseOffsetLeft = 0;            //  拖拽操作时，移动元素的起始 X 点
+            instace.mouseOffsetTop = 0;         //  拖拽操作时，移动元素的起始 Y 点
+
+            instace.dragElement.addEventListener('mousedown',function(e){
+
+                var e = e || window.event;
+
+                dialogInstace = instace;
+                instace.mouseOffsetLeft = e.pageX - instace.moveElement.offsetLeft ;
+                instace.mouseOffsetTop  = e.pageY - instace.moveElement.offsetTop ;
+                
+                // instace.moveElement.style.zIndex = zIndex ++;
+            })
+
+            return instace;
+        }
+
+        //  在页面中侦听 鼠标弹起事件
+        document.onmouseup = function(e){
+            
+            dialogInstace = false;
+            clearInterval(onMoveStartId);
+
+        }
+
+        //  在页面中侦听 鼠标移动事件
+        document.onmousemove = function(e) {
+            var e = e || window.event;
+            var instace = dialogInstace;
+            if (instace) {
+                
+                var maxX = document.documentElement.clientWidth -  instace.moveElement.offsetWidth;
+                var maxY = document.documentElement.clientHeight - instace.moveElement.offsetHeight ;
+
+                instace.moveElement.style.left = Math.min( Math.max( ( e.pageX - instace.mouseOffsetLeft) , 0 ) , maxX) + "px";
+                instace.moveElement.style.top  = Math.min( Math.max( ( e.pageY - instace.mouseOffsetTop ) , 0 ) , maxY) + "px";
+            }
+            if(e.stopPropagation) {
+                e.stopPropagation();
+            } else {
+                e.cancelBubble = true;
+            }
+        };
+
+        //  拖拽对话框实例对象
+        Dialog('dialogDrag','dialogMove');
+
+        function onMoveStart(){
+
+        }
+
+
+        //  重新调整对话框的位置和遮罩，并且展现
+        function showDialog(){
+            g('dialogMove').style.display = 'block';
+            g('mask').style.display = 'block';
+            autoCenter( g('dialogMove') );
+            fillToBody( g('mask') );
+        }
+
+        //  关闭对话框
+        function hideDialog(){
+            g('dialogMove').style.display = 'none';
+            g('mask').style.display = 'none';
+        }
+
+        //  侦听浏览器窗口大小变化
+        //window.onresize = showDialog;
+    </script>
+        <script type="text/javascript">
+        //http://view.jqueryfuns.com/%E9%A2%84%E8%A7%88-/2017/4/28/d6d2b81713e1508927ab49adcf281e17/
+        $(function () {
+            $(" .con_right .left").click(function (e) {
+                $(this).css({ "color": "#333333", "border-bottom": "2px solid #2e558e" });
+                $(".con_right .right").css({ "color": "#999999", "border-bottom": "2px solid #dedede" });
+                $(".con_right ul .con_r_left").css("display", "block");
+                $(".con_right ul .con_r_right").css("display", "none");
+                if (fluCodeInterval == null || fluCheckCodeInterval == null) {
+                    show();
+                    flushQRCode();
+                    checkQRCodeStatus();
+                }
+            });
+            $(" .con_right .right").click(function (e) {
+                $(this).css({ "color": "#333333", "border-bottom": "2px solid #2e558e" });
+                $(".con_right .left").css({ "color": "#999999", "border-bottom": "2px solid #dedede" });
+                $(".con_right ul .con_r_right").css("display", "block");
+                $(".con_right ul .con_r_left").css("display", "none");
+            });
+        })
+        </script>
+        <script type="text/javascript">
+        $("#btn_Login").on('click',function(){//登陆按钮
+          var user = $("#userid").val();
+          var password = $("#pwd").val();
+             if(user==''||user=='用户名'){
+                 //$("#login_tip").val("用户名不能为空");
+                 document.getElementById('login_tip').innerHTML = "用户名不能为空";
+                 $("#userid").focus();
+                 return false;}
+               else if(password==''||password=='密码'){
+                 //$("#login_tip").val("密码不能为空")
+                 document.getElementById('login_tip').innerHTML = "密码不能为空";
+                 $("#pwd").focus();
+                 return false;
+                 }
+                 else{
+                //ajax请求
+                $.ajax({
+                    type:           "POST",
+                    url:            "http://120.77.245.158:8088/api/User/Login",
+                    contentType:    "application/json",
+                    dataType:       "json",
+                    data: '\{           UserCode:\"'+user+'\",              PassWord:\"'+password+'\"           \}',
+                    beforeSend:function(){
+                        document.getElementById("login_tip").innerHTML = "登录中..."
+                        },
+                    success:function(json){
+                        if(json.ID > 0){
+                            document.getElementById("login_tip").innerHTML = json.UserName;
+                            //window.location.href="http://120.77.245.158/bookstore";
+                            $("#login_content_log_02").fadeOut();
+                            $("#login_content_log_03").fadeIn();
+                            sessionStorage.setItem('UserCode', json.ID);
+                            sessionStorage.setItem('UserName', json.UserName);
+
+                            //alert(getCookie(user));
+                            var t1 = setTimeout("window.location.href='http://120.77.245.158/bookshelf.shtml'",1000);
+                        }
+                        else{
+                            document.getElementById("login_tip").innerHTML = json.UserName;}
+                        }
+                        
+                    });}
+                 
+                 document.getElementById("login_tip").innerHTML = "登录中...";
+                 //t = setTimeout("demo()",1500);
+                 }
+            );
+        </script>
+        <style type="text/css">
+        .ui-dialog{ 
+        width: 448px;height: auto;display: none;
+        position: absolute;z-index: 9000;
+        top: 0px;left: 0px;
+        border: 1px solid #D5D5D5;background: #fff;
+    }
+
+    .ui-dialog a{text-decoration: none;}
+
+    .ui-dialog-title{
+        height: 48px;line-height: 48px; padding:0px 20px;color: #535353;font-size: 16px;
+        border-bottom: 1px solid #efefef;background: #f5f5f5;
+        cursor: move;
+        user-select:none;
+    }
+    .ui-dialog-closebutton{
+        width: 16px;height: 16px;display: block;
+        position: absolute;top: 12px;right: 20px;
+        background: url(../images/close_def.png) no-repeat;cursor: pointer;
+
+    }
+    .ui-dialog-closebutton:hover{background:url(../images/close_hov.png);}
+
+    .ui-dialog-content{
+    }
+    .ui-dialog-pt15{
+        padding-top: 15px;
+    }
+    .ui-dialog-l40{
+        height: 40px;line-height: 40px;
+        text-align: right;
+    }
+
+    .ui-dialog-input{
+        width: 100%;height: 40px;
+        margin: 0px;padding:0px;
+        border: 1px solid #d5d5d5;
+        font-size: 16px;color: #c1c1c1;
+        text-indent: 25px;
+        outline: none;
+    }
+    .ui-dialog-input-username, .user-icon{
+        background: url(../images/input_username.png) no-repeat 2px ;
+    }
+
+    .ui-dialog-input-password, .mima-icon{
+        background: url(../images/input_password.png) no-repeat 2px ;
+    }
+    .ui-dialog-submit{
+        width: 324px;height: 50px;background: #3b7ae3;margin-left:73px;border:none;font-size: 16px;color: #fff;
+        outline: none;text-decoration: none;
+        display: block;text-align: center;line-height: 50px;
+    }
+    .ui-dialog-submit:hover{
+        background: #3f81b0;
+    }
+
+    .ui-mask{ 
+        width: 100%;height:100%;background: #000;
+        position: absolute;top: 0px;height: 0px;z-index: 8000;
+        opacity:0.4; filter: Alpha(opacity=40);
+    }
+    </style>

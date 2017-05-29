@@ -31,11 +31,13 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- RESPONSIVE CSS -->
     <link rel="stylesheet" href="assets/css/responsive.css">
+    <!-- LATEST JQUERY -->
+    <script src="assets/js/jquery.min.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-          <script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		  <script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
@@ -86,14 +88,11 @@
                 <span class="text2">添加小编</span>
                 <span class="text3">等待成书</span>
             </div>
-            <div class="title">
-                文案大标题
-            </div>
-            <div class="content">
-                假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，假装有文案，文案内容，你看到的是个假文案，
-            </div>
-
         </div>
+    </section>
+    
+    <section>
+        <img src="assets/images/wenan.png" style="width:100%">        
     </section>
     <!-- START WORK DESIGN AREA -->
     <section class="service-area">
@@ -115,7 +114,7 @@
                     <div style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;" class="weixin-book wow fadeInUp" data-wow-delay="0.2s">
                         <a href="compose.html">
                             <img src="assets/images/logos/weixinB.png" onmouseover="changeSrc(this)" onmouseout="backupSrc(this)">
-                            <h2>微信</h2>
+                            <h3>微信</h3>
                         </a>
                     </div>
                 </div>
@@ -123,7 +122,7 @@
                     <div style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;" class="weibo-book wow fadeInUp" data-wow-delay="0.2s">
                     <a href="#">
                         <img src="assets/images/logos/weiboB.png" onmouseover="changeSrc(this)" onmouseout="backupSrc(this)">
-                        <h2>微博</h2>
+                        <h3>微博</h3>
                         </a>
                     </div>
                 </div>
@@ -131,7 +130,7 @@
                     <div style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;" class="douban-book wow fadeInUp" data-wow-delay="0.2s">
                     <a href="#">
                         <img src="assets/images/logos/doubanB.png" onmouseover="changeSrc(this)" onmouseout="backupSrc(this)">
-                        <h2>豆瓣</h2>
+                        <h3>豆瓣</h3>
                         </a>
                     </div>
                 </div>
@@ -139,7 +138,7 @@
                     <div style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;" class="kongjian-book wow fadeInUp" data-wow-delay="0.2s">
                     <a href="#">
                         <img src="assets/images/logos/kongjianB.png" onmouseover="changeSrc(this)" onmouseout="backupSrc(this)">
-                        <h2>空间</h2>
+                        <h3>空间</h3>
                         </a>
                     </div>
                 </div>
@@ -147,7 +146,7 @@
                     <div style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;" class="zhihu-book wow fadeInUp" data-wow-delay="0.2s">
                     <a href="#">
                         <img src="assets/images/logos/zhihuB.png" onmouseover="changeSrc(this)" onmouseout="backupSrc(this)">
-                        <h2>知乎</h2>
+                        <h3>知乎</h3>
                         </a>
                     </div>
                 </div>
@@ -194,8 +193,6 @@
     </footer>
     <!-- / END FOOTER DESIGN AREA -->
 
-    <!-- LATEST JQUERY -->
-    <script src="assets/js/jquery.min.js"></script>
     <!-- BOOTSTRAP JS -->
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <!-- OWL CAROUSEL JS  -->
