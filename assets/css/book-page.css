@@ -13090,3 +13090,34 @@ a.label[data-grade="7"],a.label[data-grade="8"],a.label[data-grade="9"],a.label[
     right: 30px;
     bottom: 80px;
 }
+
+/*index left aside realted*/
+dd {
+    margin: 0;
+    padding: 20px 0;
+    font-size: 14px;
+    background: #fbfbfb;
+    padding: 10px 15px;
+    text-align: center;
+}
+
+dt {
+    cursor: pointer;
+    font-size : 18px;
+    line-height: 23px;
+    background: #EB852A;
+
+    border-top: 1px solid #EFEFEF;
+	box-shadow: 0 1px 0 #FFFFFF;
+    font-weight: 400;
+    color: #fff;
+    text-align: left;
+    padding-right: 60px;
+    border-radius: 0 30px 30px 0;
+}
+
+dt:first-child { border-top: none; }
+dt:nth-last-child(2) { border-bottom: none; }
+
+.hiding { display: none;}
+/*index left aside realted*/
