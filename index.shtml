@@ -171,22 +171,8 @@
     <footer class="footer-area">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 wow fadeInUp" data-wow-delay="1s">
-                    <p>&copy; 2017 我的我@嘉定西站</p>
-                </div>
-                <div class="col-sm-6 wow fadeInUp" data-wow-delay="1s">
-                    <div class="footer-social-link">
-                        <ul>
-                            <li><a href="index.html"><i class="fa fa-facebook fb"></i></a>
-                            </li>
-                            <li><a href="index.html"><i class="fa fa-twitter tw"></i></a>
-                            </li>
-                            <li><a href="index.html"><i class="fa fa-dribbble dri"></i></a>
-                            </li>
-                            <li><a href="index.html"><i class="fa fa-instagram ins"></i></a>
-                            </li>
-                        </ul>
-                    </div>
+                <div class="col-sm-12 wow fadeInUp" data-wow-delay="1s" style="text-align:center">
+                    <p>CopyRight &copy;上海清书网络科技有限公司 <img style="height:20px;width:20px" src="https://img13.360buyimg.com/cms/jfs/t2293/321/1377257360/19256/c267b386/56a0a994Nf1b662dc.png"/> <a href="http://www.miibeian.gov.cn/">沪ICP备17025210号</a></p>
                 </div>
             </div>
         </div>
