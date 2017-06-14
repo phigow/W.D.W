@@ -224,7 +224,7 @@
             $("#logout").attr("style","");
             console.log(window.sessionStorage);
             }else{
-                //window.location="http://120.77.245.158/login";
+                //window.location="http://www.wodemy.com/login";
             }
         });
 
@@ -235,6 +235,7 @@
             $("#logout").attr("style","display:none");
             sessionStorage.removeItem("UserCode");
             sessionStorage.removeItem("UserName");
+            window.location="http://www.wodemy.com";
         };
     </script>
 
@@ -383,7 +384,7 @@
                 //ajax请求
                 $.ajax({
                     type:           "POST",
-                    url:            "http://120.77.245.158:8088/api/User/Login",
+                    url:            "http://www.wodemy.com:8088/api/User/Login",
                     contentType:    "application/json",
                     dataType:       "json",
                     data: '\{           UserCode:\"'+user+'\",              PassWord:\"'+password+'\"           \}',
@@ -393,14 +394,14 @@
                     success:function(json){
                         if(json.ID > 0){
                             document.getElementById("login_tip").innerHTML = json.UserName;
-                            //window.location.href="http://120.77.245.158/bookstore";
+                            //window.location.href="http://www.wodemy.com/bookstore";
                             $("#login_content_log_02").fadeOut();
                             $("#login_content_log_03").fadeIn();
                             sessionStorage.setItem('UserCode', json.ID);
                             sessionStorage.setItem('UserName', json.UserName);
 
                             //alert(getCookie(user));
-                            var t1 = setTimeout("window.location.href='http://120.77.245.158/bookshelf.shtml'",1000);
+                            var t1 = setTimeout("window.location.href='http://www.wodemy.com/bookshelf.shtml'",1000);
                         }
                         else{
                             document.getElementById("login_tip").innerHTML = json.UserName;}
