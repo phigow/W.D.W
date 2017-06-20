@@ -77,7 +77,8 @@ jQuery(document).ready(function() {
                 success: function(data) {
                     //console.log(data);
                     $(document).attr("title",data.BookShelf.c_BookName);
-                    $("#cover").attr("src","http://120.77.245.158:8088/api/Book/GetShelfCover?CoverId=" + data.BookShelf.c_CoverID + "&BookName=" + data.BookShelf.c_BookName + "&Author=" + data.BookShelf.c_Author);
+                    //$("#cover").attr("src","http://120.77.245.158:8088/api/Book/GetShelfCover?CoverId=" + data.BookShelf.c_CoverID + "&BookName=" + data.BookShelf.c_BookName + "&Author=" + data.BookShelf.c_Author);
+                    $("#cover").attr("src","http://120.77.245.158:8088/api/Book/GetShelfCoverByID?ID=1");
                     $(".book-name").html(data.BookShelf.c_BookName);
                     $(".author").html(data.BookShelf.c_Author + "·著");
                     options="";
@@ -191,12 +192,12 @@ jQuery(document).ready(function() {
                             var imgsrc1 = (data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl.indexOf("qpic.cn/mm")>0?"http://120.77.245.158:8088/api/ApiTools/GetPictureByUrl?_Url=":"")+data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl;
                             var w1 = data.bookDataOfPage_List[i].ImgData_List[j].c_Width;
                             var h1 = data.bookDataOfPage_List[i].ImgData_List[j].c_Height;
-                            if(w1 / h1 < 240/410){
+                            /*if(w1 / h1 < 240/410){
                                 imgsrc1 = "http://120.77.245.158:8088/api/ApiTools/GetPictureByUrl?_Url=" + data.bookDataOfPage_List[i].ImgData_List[j].c_PicUrl;
                                 h1 = w1 / 0.6;
-                            }
+                            }*/
                             surroundBool = 1;
-                            if((data.bookDataOfPage_List[i].ImgData_List.length==1||j==data.bookDataOfPage_List[i].ImgData_List.length-1)&&(w1/h1<1)&&(data.bookDataOfPage_List[i].c_Content.length > 100 || (h1/w1 > 410/240 && h1/w1 <= 615/240))){
+                            if((data.bookDataOfPage_List[i].ImgData_List.length==1||j==data.bookDataOfPage_List[i].ImgData_List.length-1)&&(w1/h1<1)&&(data.bookDataOfPage_List[i].c_Content.length > 100 || (h1/w1 > 410/240 ))){
                                 surroundBool = 0;
                                 pages += Spage({
                                     img:                imgsrc1,
@@ -216,10 +217,10 @@ jQuery(document).ready(function() {
                                 var imgsrc2 = (data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl.indexOf("qpic.cn/mm")>0?"http://120.77.245.158:8088/api/ApiTools/GetPictureByUrl?_Url=":"")+data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl;
                                 var w2 = data.bookDataOfPage_List[i].ImgData_List[j+1].c_Width;
                                 var h2 = data.bookDataOfPage_List[i].ImgData_List[j+1].c_Height;
-                                if(w2 / h2 < 240/410){
+                                /*if(w2 / h2 < 240/410){
                                     imgsrc2 = "http://120.77.245.158:8088/api/ApiTools/GetPictureByUrl?_Url=" + data.bookDataOfPage_List[i].ImgData_List[j+1].c_PicUrl;
                                     h2 = w2 / 0.6;
-                                }
+                                }*/
                                 widthA = w1 * widthPercent / (w1 + w2*h1/h2) ;
                                 widthB = (w2*h1/h2) * widthPercent / (w1 + w2*h1/h2) ;
                                 imageHeight += h1 * hwRatio / (w1 + w2*h1/h2);
@@ -325,6 +326,18 @@ jQuery(document).ready(function() {
                         if(imageHeight>maxHeight){
                         console.log(data.bookDataOfPage_List[i].c_Content)
                         console.log(imageHeight);}
+                        $.ajax({
+                            type:       "POST",
+                            url:        "http://120.77.245.158:8088/api/Book/ModifyBookPages",
+                            data:       '{PageNum:'+ pageNumber +',ID:"'+id+'"}',
+                            contentType:"application/json",
+                            success:    function(data){
+                                console.log(data);
+                            },   
+                            error:      function(data){
+                                alert("error");
+                            }
+                        });
                     };                    
                     //console.log(data.bookDataOfPage_List[i]);
                     }

@@ -68,7 +68,7 @@
             top: 550px;
             font-size: 55px;
             font-weight: bold;
-            text-align: center;
+            text-align: right;
             width: 100%;
             line-height: 57px;
         }
@@ -77,26 +77,25 @@
            position: absolute;
             z-index: 1;
             top: 700px;
-            font-size: 23px;
-            font-style: italic;    
+            font-size: 23px;   
             text-align: center;
         }
     </style>
     <!--[if IE]-->
 </head>
 <body ng-app="wxbook">
-    <aside id="sidebar" style="position:fixed; max-width:50px; padding-top:1rem">
+    <aside id="sidebar" style="position:fixed; max-width:50px; padding-top:1rem; z-index:10">
     </aside>
     <ui-view name="main">
     <!---->
         <div class="wrapper preview" ui-view="preview">
             <div id="page" class="A5-1 finalized" ng-class="{error: vm.book.error,editable: vm.book.editable,finalized: vm.book.finalized}" ng-switch="vm.stateParams.section">
-                <div class="pages-container" ng-switch-when="cover" auto-resize="" style="transform: scale(0.644643);">
+                <div class="pages-container" ng-switch-when="cover" auto-resize="" style="transform: scale(0.644643);/*transform-origin:50% 0*/">
                     <ul class="pages" id="page_lists">
                         <!--封面页-->
                         <li class="page cover swipeout" book="vm.book" parse-emoji=".author, .title">                                    
-                            <div class="book-name" style="display:none">{bookName}</div>
-                            <div class="author" style="display:none; width:100%">{author}</div>
+                            <div class="book-name" style="">{bookName}</div>
+                            <div class="author" style="width:100%">{author}</div>
                             <cover book="book" pic="book.cover.pic" size="560" editable="book.editable &amp;&amp; book.cover.editable"
                             class="loaded" style='display:none'>
                                 <ng-transclude>
@@ -311,8 +310,6 @@
                         </li>
                         <!--正文-->
                     </ul>
-
-    <a href="pay.html" target="new" class="swipe-out">提交</a>
                 </div>
             </div>
         </div>
