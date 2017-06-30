@@ -63,6 +63,25 @@ function cutContent (str, line, width){
     };
     return content;
 };
+function verticalText(text) {
+        var array = text.split("");
+        return array.join("<br>");
+}
+function coverLayout (id) {
+        $.ajax({
+                type:       "GET",
+                url:        'http://www.wodemy.com:8088/api/Book/GetShelfLoctionByID?ID=' + id,
+                dataType:   "json",
+                success:    function(data) {
+                    $(".book-name").css({"top":data.c_Name_Top,"right":data.c_Name_Right,"font-size":data.c_FontSize,"color":data.c_FontColor});
+                    $(".author").css({"top":data.c_Author_Top,"right":data.c_Author_Right,"color":data.c_FontColor,"text-align":data.c_Author_align});
+                    if(data.c_VAlign){
+                        var title = $(".book-name").innerHTML;
+                        $(".book-name").html(verticalText(title));
+                    }
+                }
+            });
+};
 function restContent (str, sub){
     var rest = str.substring(sub.length);
     return rest;
@@ -78,9 +97,10 @@ jQuery(document).ready(function() {
                     //console.log(data);
                     $(document).attr("title",data.BookShelf.c_BookName);
                     //$("#cover").attr("src","http://120.77.245.158:8088/api/Book/GetShelfCover?CoverId=" + data.BookShelf.c_CoverID + "&BookName=" + data.BookShelf.c_BookName + "&Author=" + data.BookShelf.c_Author);
-                    $("#cover").attr("src","http://120.77.245.158:8088/api/Book/GetShelfCoverByID?ID=1");
+                    $("#cover").attr("src","http://120.77.245.158:8088/api/Book/GetShelfCoverByID?ID=" + data.BookShelf.c_CoverID);
                     $(".book-name").html(data.BookShelf.c_BookName);
                     $(".author").html(data.BookShelf.c_Author + "·著");
+                    coverLayout(data.BookShelf.c_CoverID);
                     options="";
                     var page=_.template($('#page_template').html());
                     var Spage=_.template($('#lonely_page_template').html());
