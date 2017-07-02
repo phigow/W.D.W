@@ -76,7 +76,7 @@ function coverLayout (id) {
                     $(".book-name").css({"top":data.c_Name_Top,"right":data.c_Name_Right,"font-size":data.c_FontSize,"color":data.c_FontColor});
                     $(".author").css({"top":data.c_Author_Top,"right":data.c_Author_Right,"color":data.c_FontColor,"text-align":data.c_Author_align});
                     if(data.c_VAlign){
-                        var title = $(".book-name").innerHTML;
+                        var title = $(".book-name")[0].innerHTML;
                         $(".book-name").html(verticalText(title));
                     }
                 }
